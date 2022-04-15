@@ -1,0 +1,44 @@
+<div class="play-buttons-container">
+    <button
+        (click)="play()"
+        class="play-button button"
+        [class.button-disabled]="!gameStarted"
+    >
+        Play
+    </button>
+    <button
+        (click)="gameOver()"
+        class="reset-button button"
+        [class.button-disabled]="gameStarted"
+    >
+        Reset
+    </button>
+    <button
+        (click)="pause()"
+        class="pause-button button"
+        [class.button-disabled]="!gameStarted"
+    >
+        Pause
+    </button>
+</div>
+<div class="grid">
+    <canvas #board class="game-board"></canvas>
+
+</div>
+<div class="play-buttons-container">
+    <button (click)="doKey(37, null)">Left</button>
+    <button (click)="doKey(38, null)">Rotate</button>
+    <button (click)="doKey(39, null)">Right</button>
+    <button (click)="doKey(32, null)">Down</button>
+</div>
+<canvas #next class="next"></canvas>
+<div class="grid">
+    <div>
+        <h1>TETRIS</h1>
+        <p>Score: {{ points }}</p>
+        <p>Lines: {{ lines }}</p>
+        <p>Level: {{ level }}</p>
+        <p>High Score:</p>
+        <p>{{ highScore }}</p>
+    </div>
+</div>
