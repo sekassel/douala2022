@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ScoreserviceService } from '../scoredatabase/scoreservice.service'
 import { BLOCK_SIZE, COLORS, COLORSDARKER, COLORSLIGHTER, COLS, KEY, LEVEL, LINES_PER_LEVEL, POINTS, ROWS } from './constants'
 import { GameService } from './game.service'
 import { IPiece, Piece } from './piece.component'
@@ -42,7 +43,10 @@ export class TetrisComponent implements OnInit {
   ctxNext?: CanvasRenderingContext2D | null;
 
 
-  constructor(private service: GameService) {
+  constructor(
+    private service: GameService,
+    private scoreService: ScoreserviceService
+  ) {
     this.moves.set(KEY.LEFT, (p: IPiece): IPiece => ({ ...p, x: p.x - 1 }))
     this.moves.set(KEY.RIGHT, (p: IPiece): IPiece => ({ ...p, x: p.x + 1 }))
     this.moves.set(KEY.DOWN, (p: IPiece): IPiece => ({ ...p, y: p.y + 1 }))
@@ -301,7 +305,7 @@ export class TetrisComponent implements OnInit {
     }
   }
 
-  gameOver() {
+  async gameOver() {
     this.gameStarted = false;
     cancelAnimationFrame(this.requestId);
     this.highScore = this.points > this.highScore ? this.points : this.highScore;
@@ -313,6 +317,19 @@ export class TetrisComponent implements OnInit {
     this.ctx.font = '1px Arial';
     this.ctx.fillStyle = 'red';
     this.ctx.fillText('GAME OVER', 1.8, 4);
+
+    console.log(`game is over we have ${this.points} points`)
+
+    // store new high score in the database
+    const doc = await this.scoreService.scoresDatabase?.scores.insert(
+      {
+        dateTime: new Date().toISOString(),
+        score: `${this.points}`,
+        player: 'newbie'
+      }
+    )
+    console.log(`stored data is ${doc?.get('score')}`)
+
   }
 
   private addOutlines() {
