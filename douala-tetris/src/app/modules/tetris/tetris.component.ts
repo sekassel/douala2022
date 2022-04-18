@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router'
 import { ScoreserviceService } from '../scoredatabase/scoreservice.service'
 import { BLOCK_SIZE, COLORS, COLORSDARKER, COLORSLIGHTER, COLS, KEY, LEVEL, LINES_PER_LEVEL, POINTS, ROWS } from './constants'
 import { GameService } from './game.service'
@@ -44,6 +45,7 @@ export class TetrisComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private service: GameService,
     private scoreService: ScoreserviceService
   ) {
@@ -324,12 +326,12 @@ export class TetrisComponent implements OnInit {
     const doc = await this.scoreService.scoresDatabase?.scores.insert(
       {
         dateTime: new Date().toISOString(),
-        score: `${this.points}`,
+        score: this.points,
         player: 'newbie'
       }
     )
     console.log(`stored data is ${doc?.get('score')}`)
-
+    this.router.navigate(['scores'])
   }
 
   private addOutlines() {
