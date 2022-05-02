@@ -55,7 +55,7 @@ export class ScoreserviceService {
       })
       console.log(`             second score inserted`);
     } catch (error) {
-      console.log(`got error\n ${JSON.stringify(error)}`)
+      console.log(`got error\n ${JSON.stringify(error, null, 3)}`)
     }
 
     return 'done';
