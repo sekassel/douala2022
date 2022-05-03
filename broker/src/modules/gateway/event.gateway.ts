@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import {
     MessageBody,
     OnGatewayConnection,
@@ -9,7 +10,11 @@ import {
    
   @WebSocketGateway(4001)
   export class EventsGateway implements OnGatewayConnection {
+
+    private logger= new Logger('EventsGateway')
+
     handleConnection(client: any) {
+      this.logger.log('new client')
       client.emit('connection','successfully connected to server')  
     }
     @WebSocketServer()
@@ -19,6 +24,7 @@ import {
    
     @SubscribeMessage('events')
     handleEvent(@MessageBody() data: string): string {
+      console.log(data)
         return data;
     }
   }

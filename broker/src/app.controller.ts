@@ -10,7 +10,7 @@ export class AppController {
   getHello(): string {
     // const socket = io('http://localhost/4001')
 
-    this.eventGateWay.server.emit('bonjour')
+   console.log( this.eventGateWay.server.emit('events',"ici"))
 
 
     return this.appService.getHello();
