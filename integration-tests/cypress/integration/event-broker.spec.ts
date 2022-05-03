@@ -34,7 +34,7 @@ describe('the event broker client', () => {
 
     it('sends a message', ()=>{
         ws?.send('hello can i send you some events?');
-        cy.wait(4000)
+        cy.wait(1000)
     })
 
     it('subsribes for user created', ()=>{
@@ -43,7 +43,22 @@ describe('the event broker client', () => {
             targetTopic: 'user-created'
         }
         ws?.send(JSON.stringify(msg, null, 3));
-        cy.wait(4000)
+        cy.wait(1000);
     })
+
+
+    it('subsribes for user created', ()=>{
+        const msg = {
+            topic: 'publish',
+            targetTopic: 'user-created',
+            payload: {
+                userName: 'Alice',
+                token: '12345621'
+            }
+        }
+        ws?.send(JSON.stringify(msg, null, 3));
+        cy.wait(1000);
+    })
+
 
 })

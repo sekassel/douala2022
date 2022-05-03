@@ -23,7 +23,6 @@ wss.on('connection', (ws: WebSocket) => {
         const msg : string = `${message}`
 
         if (msg.startsWith('{')) {
-            console.log('trying to parse ' + msg);
             const jsonMsg = JSON.parse(msg);
             if (jsonMsg.topic == 'subscribe') {
                 console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
@@ -39,6 +38,22 @@ wss.on('connection', (ws: WebSocket) => {
                     originalMessage: jsonMsg
                 }
                 ws.send(JSON.stringify(answer, null, 3))
+                return
+            }
+
+            if (jsonMsg.topic == 'publish') {
+                console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
+                const tgtTopic = jsonMsg.targetTopic;
+
+                // find interested sockets
+                const socketList = topicMap.get(jsonMsg.targetTopic)
+                if (socketList == null) {
+                    return
+                }
+
+                // send the message
+
+                return
             }
         }
 
