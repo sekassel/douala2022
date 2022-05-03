@@ -10,13 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogComponent } from './dialog/dialog.component' 
 import { MatCardModule } from '@angular/material/card';
+import { ChallengeDetailsComponent } from './challenge-details/challenge-details.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
+    ChallengeDetailsComponent
   ],
   imports: [
     BrowserModule,
