@@ -6,7 +6,8 @@
   "scripts": {
     "test": "testbroker",
     "build": "tsc",
-    "start": "ts-node src/server.ts"
+    "start": "node dist/server/server.js",
+    "watch": "ts-node src/server.ts --watch"
   },
   "author": "",
   "license": "ISC",

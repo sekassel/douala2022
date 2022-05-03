@@ -9,6 +9,8 @@ const server = http.createServer(app);
 
 //initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
+const wsList : WebSocket[] = []
+const topicMap: Map<string, WebSocket[]> = new Map();
 
 wss.on('connection', (ws: WebSocket) => {
 
@@ -17,6 +19,29 @@ wss.on('connection', (ws: WebSocket) => {
 
         //log the received message and send it back to the client
         console.log('received: %s', message);
+
+        const msg : string = `${message}`
+
+        if (msg.startsWith('{')) {
+            console.log('trying to parse ' + msg);
+            const jsonMsg = JSON.parse(msg);
+            if (jsonMsg.topic == 'subscribe') {
+                console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
+                const tgtTopic = jsonMsg.targetTopic;
+                var subscribers = topicMap.get(tgtTopic);
+                if (subscribers == null) {
+                    subscribers = [];
+                    topicMap.set(tgtTopic, subscribers)
+                }
+                subscribers.push(ws);
+                const answer = {
+                    state: 'success',
+                    originalMessage: jsonMsg
+                }
+                ws.send(JSON.stringify(answer, null, 3))
+            }
+        }
+
         ws.send(`Hello, you sent -> ${message}`);
     });
 

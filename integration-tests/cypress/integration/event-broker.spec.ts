@@ -37,4 +37,13 @@ describe('the event broker client', () => {
         cy.wait(4000)
     })
 
+    it('subsribes for user created', ()=>{
+        const msg = {
+            topic: 'subscribe',
+            targetTopic: 'user-created'
+        }
+        ws?.send(JSON.stringify(msg, null, 3));
+        cy.wait(4000)
+    })
+
 })
