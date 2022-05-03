@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreatingTeamComponent } from './components/creating-team/creating-team.component';
+import { TeamsManagementComponent } from './components/teams-management/teams-management.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatingTeamComponent
+    CreatingTeamComponent,
+    TeamsManagementComponent
   ],
   imports: [
     BrowserModule,

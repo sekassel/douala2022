@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BuilderService } from './module/builder. service';
+import { BuilderService } from './module/builder/builder. service';
 import team from './module/builder/team';
 
 @Injectable()

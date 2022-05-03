@@ -5,7 +5,7 @@ import { TeamsManagementComponent } from './components/teams-management/teams-ma
 
 
 const routes: Routes = [ 
-  {path: 'manageTeams', component: TeamsManagementComponent},
+ {path: 'manageTeams', component: TeamsManagementComponent},
   { path: 'teams-management/creating-team',component:CreatingTeamComponent }
 ]
 
