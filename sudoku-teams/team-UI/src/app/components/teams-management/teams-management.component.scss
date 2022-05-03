@@ -1,0 +1,40 @@
+.story-title {
+  width: 60%;
+}
+td{
+  height: 1px;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(15, 177, 236, 0.2);
+}
+.actions{
+  float: right;
+}
+.actionrow{
+  width: 15%;
+}
+.bi-bell-fill{
+  color: #000000;
+}
+.notif-number{
+  background-color: red;
+  color: white;
+  font-size: 11px;
+  height: 13px;
+  width: 13px;
+  font-weight:600;
+
+  border-radius: 50%;
+  height: 100%;
+
+}
+i{
+  font-weight: 900;
+  font-size: 18px;
+}
+a{
+  height: 100%;
+  padding-top: 0;
+  padding-right: 0;
+}
