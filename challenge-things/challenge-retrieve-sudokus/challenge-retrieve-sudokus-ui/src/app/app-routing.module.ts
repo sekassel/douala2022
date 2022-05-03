@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RetriveFormComponent } from './components/retrive-form/retrive-form.component';
+import { AppComponent } from './app.component';
+import { TeamViewerComponent } from './components/team-viewer/team-viewer.component';
+//import { RetriveFormComponent } from './components/retrive-form/retrive-form.component';
 
 
   const routes: Routes = [
-    { 'path': '', component: RetriveFormComponent},
-    { 'path': 'retrieve-form', component: RetriveFormComponent},
+    { 'path': '', component: TeamViewerComponent},
 ];
 
 @NgModule({
