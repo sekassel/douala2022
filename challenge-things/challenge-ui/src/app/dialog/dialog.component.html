@@ -5,8 +5,8 @@
         <div class="d-flex align-center justify-content-between" *ngFor="let data of datas">
             <h2 class="fw-light">{{data.challengeName}}  {{data.date}}</h2>
             <div>
-                <button (click)="onAcceptChallenge(1)" class="btn btn-sm btn-primary me-2">Accept</button>
-                <button (click)="onDeclineChallenge(1)" class="btn btn-sm btn-danger">Decline</button>
+                <button (click)="onAcceptChallenge(data)" class="btn btn-sm btn-primary me-2">Accept</button>
+                <button (click)="onDeclineChallenge(data)" class="btn btn-sm btn-danger">Decline</button>
             </div>
         </div>
     </div> 

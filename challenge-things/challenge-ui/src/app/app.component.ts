@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent, DialogData } from './dialog/dialog.component';
 
 
 
@@ -12,6 +12,7 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 export class AppComponent {
   title = 'challenge-ui';
+  challenge?: DialogData;
 
   dataSend = [
     {
@@ -43,7 +44,7 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.title = result;
+      this.dialog = result;
     });
   }
 

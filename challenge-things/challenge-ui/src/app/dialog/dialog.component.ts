@@ -30,13 +30,13 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onAcceptChallenge(challengeId:number): void {
+  onAcceptChallenge(challengeId:DialogData): void {
     alert(`Hey folks ! Challenge ${challengeId} accepted :) !`);
     // Move to another modal to show available "sudokus"
     // that user can select. 
   }
 
-  onDeclineChallenge(challengeId:number): void {
+  onDeclineChallenge(challengeId:DialogData): void {
     const answer = confirm(`Do you really want to decline this challenge ?`);
     if(answer)
       alert(`Challenge ${challengeId} declined :( !`);
