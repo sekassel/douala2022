@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   ) {  }
 
   async ngOnInit() {
-    await this.scoreService.init();
+    await this.scoreService.initFlag;
     const amount = await this.scoreService.scoresDatabase?.scores.countAllDocuments();
     console.log(`app has started and we have ${amount} scores in our database`)
   }

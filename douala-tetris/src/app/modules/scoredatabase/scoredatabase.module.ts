@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScoreserviceService } from '../scoreservice.service'
+import { ScoreserviceService } from './scoreservice.service'
 
 
 

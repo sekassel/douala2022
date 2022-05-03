@@ -20,7 +20,7 @@ export const highScoreSchemaLiteral = {
             type: 'string'
         },
         score: {
-            type: 'string'
+            type: 'number'
         },
         player: {
             type: 'string'

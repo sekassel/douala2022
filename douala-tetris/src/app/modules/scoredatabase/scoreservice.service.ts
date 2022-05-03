@@ -13,7 +13,11 @@ export class ScoreserviceService {
 
   scoresDatabase?: HighScoreDatabase;
 
-  constructor() { }
+  initFlag : Promise<string>
+
+  constructor() {
+    this.initFlag = this.init();
+  }
 
   async init() {
     console.log("Starting app, creating database");
@@ -39,19 +43,21 @@ export class ScoreserviceService {
 
       await this.scoresDatabase.scores.insert({
         dateTime: '2022-04-14T19:02:00',
-        score: '42',
+        score: 42,
         player: 'AlbDelZun'
       })
       console.log(`             first score inserted`);
 
       await this.scoresDatabase.scores.insert({
         dateTime: '2022-04-14T19:03:00',
-        score: '23',
+        score: 23,
         player: 'AlbDelZun'
       })
       console.log(`             second score inserted`);
     } catch (error) {
-      console.log(`got error\n ${JSON.stringify(error)}`)
+      console.log(`got error\n ${JSON.stringify(error, null, 3)}`)
     }
+
+    return 'done';
   }
 }
