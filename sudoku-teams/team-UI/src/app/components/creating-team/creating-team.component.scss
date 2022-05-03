@@ -1,0 +1,27 @@
+.container{
+    margin-top: 7%;
+    border: 1px olive solid;
+    width: 75%;
+    background-color: rgba(56, 44, 44,0.5);
+    border-radius:25px;
+}
+
+h1{
+    font-size: 250%;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+label{
+    font-family: 'Lucida Sans';
+    font-size: 150%;
+}
+input{
+    width: 75%;
+    margin-left: 10%;
+}
+button{
+    margin-left: 25%;
+    width: 20%;
+    height: 25%;
+}
