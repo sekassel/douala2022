@@ -29,7 +29,7 @@
     <div class="story-title">
       <table class="table table-striped">
         <thead class="">
-            <th scope="col">Created teams <a id='createMore' class="btn" routerLink="/teams-management/creating-team"><i class="bi bi-plus-circle mx-3"></i></a></th>
+            <th scope="col">Created teams <a id='createMore' class="btn" routerLink="/manageTeams/creating-team"><i class="bi bi-plus-circle mx-3"></i></a></th>
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let team of createdTeams">
@@ -41,7 +41,7 @@
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
                   <i class="bi bi-dash-circle text-danger"></i>
                 </a>
-                <a id='' class="btn" routerLink="/">
+                <a id='' class="btn" routerLink="/manageTeams/managemyteam">
                   <i class="bi bi-bell-fill"></i>
                   <span class="notif-number align-top">10</span>
                 </a>
@@ -74,4 +74,3 @@
     </div>
   </div>
 </html>
-<p>teams-management works!</p>
