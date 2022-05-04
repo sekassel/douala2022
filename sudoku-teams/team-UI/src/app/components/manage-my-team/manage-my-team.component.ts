@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-my-team.component.scss']
 })
 export class ManageMyTeamComponent implements OnInit {
-
-  constructor() { }
+  myTeams:Array<String>
+  allTeams:Array<String>
+  createdTeams:Array<String>
+  constructor() {
+    this.myTeams = ["One of Grace's teams","One of Grace's teams","One of Grace's teams"]
+    this.allTeams = ["One of Grace's teams","One of Grace's teams","One of Grace's teams"]
+    this.createdTeams = ["One of Grace's teams","One of Grace's teams","One of Grace's teams"]
+   }
 
   ngOnInit(): void {
   }
