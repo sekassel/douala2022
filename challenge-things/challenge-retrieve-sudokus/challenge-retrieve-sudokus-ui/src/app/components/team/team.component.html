@@ -13,7 +13,7 @@
     <button [id]="teamName" type="button" (click)="open(inviteModal)" class="btn btn-primary mt-auto">Invite</button>
 </div>
 
-<ng-template #inviteModal let-c let-d>
+<ng-template #inviteModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Challenge invitation</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
