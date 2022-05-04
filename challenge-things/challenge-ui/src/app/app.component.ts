@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { CommunicationService } from './services/communication.service';
 
 
 
@@ -16,21 +17,28 @@ export class AppComponent {
   dataSend = [
     {
       challengeName: "name1",
-      date: "21 may 2022"
+      date: "21 may 2022",
+      new: true,
+      accpeted: false
     },
     {
       challengeName: "name2",
-      date: "21 may 2022"
+      date: "21 may 2022",
+      new: true,
+      accpeted: false
     },
     {
       challengeName: "name3",
-      date: "21 may 2022"
+      date: "21 may 2022",
+      new: true,
+      accpeted: false
     }
   ]
 
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private communicationService: CommunicationService
   ) {}
 
 
@@ -43,7 +51,7 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.title = result;
+      this.communicationService.challenge = result;
     });
   }
 
