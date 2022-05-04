@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-  </head>
+  <div class="pageInfo"><span>Manage Your Team</span></div>
   <div class="container justify-align-center">
     <div class="story-title">
       <table class="table">
         <thead class="">
-            <th scope="col"><i class="bi bi-box-arrow-in-right"></i> Requests</th>
+            <th scope="col" class="re"><i class="bi bi-box-arrow-in-right"></i> Requests</th>
         </thead>
         <tbody>
           <tr *ngFor="let request of requests">
-            <td class="text-center b-r b-l">
-              <div class="profile-pic">
-                <img src={{img}} alt="Profile Picture">
+            <td class="text-center ">
+              <div class="profile-pic-r">
+                <i class="bi bi-person-circle"></i>
               </div>
               {{request}}
               <div class="actions">
@@ -26,7 +25,7 @@
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i>
+          <tr class="text-center re-b"><i class="bi bi-caret-down-fill"></i>
           </tr>
         </tbody>
       </table>
@@ -35,18 +34,21 @@
     <div class="story-title">
       <table class="table">
         <thead class="">
-            <th scope="col"><i class="bi bi-hourglass-split"></i>Pending invitations</th>
+            <th scope="col" class="in"><i class="bi bi-hourglass-split"></i>Pending invitations</th>
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let inv of invitations">
-            <td class ="b-r b-l">
+            <td class ="">
+              <div class="profile-pic-i">
+                <i class="bi bi-person-circle"></i>
+              </div>
               {{inv}}
               <div class="actions">
                   <i class="bi bi-three-dots"></i>
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
+          <tr class="text-center in-b"><i class="bi bi-caret-down-fill"></i></tr>
         </tbody>
       </table>
     </div>
@@ -54,11 +56,15 @@
     <div class="story-title">
       <table class="table">
         <thead class="">
-            <th scope="col"><i class="bi bi-people-fill"></i>Team's Members</th>
+            <th scope="col" class="me"><i class="bi bi-people-fill"></i>Team's Members</th>
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let member of members">
-            <td class="b-r b-l">{{member}}
+            <td class="">
+              <div class="profile-pic-m">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              {{member}}
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
                   <i class="bi bi-dash-circle"></i>
@@ -66,6 +72,7 @@
               </div>
             </td>
           </tr>
+          <tr class="me-b"></tr>
         </tbody>
       </table>
     </div>
