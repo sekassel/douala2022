@@ -1,5 +1,6 @@
 
 
+import { assert } from 'console'
 import {Websocket, WebsocketBuilder} from 'websocket-ts';
 
 
@@ -27,16 +28,23 @@ describe('the event broker client', () => {
         .onRetry((i, ev) => { console.log("retry") })
         .build();
 
-        console.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
+        console.log(`ws is now open`)
+    })
 
-        cy.wait(1000);
+    it('checks for messages', () => {
+        cy.log(JSON.stringify(messageList, null, 3))
+        messageList = []
     })
 
     it('sends a message', ()=>{
         ws?.send('hello can i send you some events?');
         cy.wait(1000)
+    })
 
-        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+    it('checks for response', () => {
+        cy.log(JSON.stringify(messageList, null, 3))
+        expect(messageList.length).gt(0)
+        messageList = []
     })
 
     it('subsribes for user created', ()=>{
