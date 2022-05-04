@@ -16,8 +16,7 @@ describe('the event broker client', () => {
         .onOpen((i, ev) => {
             console.log("yes the socket is opened")
             messageList.push("yes the socket is opened")
-
-            ws?.send("I have just opened you")
+            // ws?.send("I have just opened you")
          })
         .onClose((i, ev) => { console.log("closed") })
         .onError((i, ev) => { console.log("error") })
@@ -30,12 +29,7 @@ describe('the event broker client', () => {
 
         console.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
 
-        cy.wait(1000)
-
-        cy.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
-
-
-        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+        cy.wait(1000);
     })
 
     it('sends a message', ()=>{
@@ -57,7 +51,7 @@ describe('the event broker client', () => {
     })
 
 
-    it('subsribes for user created', ()=>{
+    it('publish for user created', ()=>{
         const msg = {
             topic: 'publish',
             targetTopic: 'user-created',
