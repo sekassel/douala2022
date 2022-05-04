@@ -18,7 +18,7 @@ export class AppComponent {
   
   
   validateRow(userInput: number[]):boolean{
-    if((userInput.length == 3) && (userInput.find(elt => (elt==0 || elt >9)) == undefined)){
+    if((userInput.length == 9) && (userInput.find(elt => (elt==0 || elt >9)) == undefined)){
       return userInput.length !== new Set(userInput).size? false : true ;
     }else{
       return false;
@@ -29,7 +29,7 @@ export class AppComponent {
     this.row = rowValues.split(',').map(elt => Number(elt));
     if(this.validateRow(this.row)){
       this.sudokuGrid[this.line] = this.row;
-      (this.line >= 2)? this.setRow("solution entered") : this.line++;
+      (this.line >= 8)? this.setRow("solution entered") : this.line++;
     }else{
       console.log("the input you entered is not correct")
     }
@@ -41,9 +41,9 @@ export class AppComponent {
     this.sudokuGrid.forEach(elt => elt.forEach(e =>{
       cnt++;
       e < 0? found++ : found;}));
-    console.log(found)
-    console.log(cnt);
-    return found > 0 && cnt == 9? true : false;
+    console.log(found,"Hidden numbers")
+    console.log(cnt, "Entries found");
+    return found > 0 && cnt == 81? true : false;
    }
   setRow(msg: string){
     this.line = 0
