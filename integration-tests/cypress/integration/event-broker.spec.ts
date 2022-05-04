@@ -4,6 +4,7 @@ import {Websocket, WebsocketBuilder} from 'websocket-ts';
 
 
 var ws : Websocket | null = null
+var messageList : string[] = []
 
 describe('the event broker client', () => {
 
@@ -14,27 +15,28 @@ describe('the event broker client', () => {
         ws = new WebsocketBuilder('ws://localhost:3333')
         .onOpen((i, ev) => {
             console.log("yes the socket is opened")
-            ws?.send("I have just opened you")
+            messageList.push("yes the socket is opened")
+            // ws?.send("I have just opened you")
          })
         .onClose((i, ev) => { console.log("closed") })
         .onError((i, ev) => { console.log("error") })
-        .onMessage((i, ev) => { console.log("we got a message " + JSON.stringify(ev, null, 3)) })
+        .onMessage((i, ev) => {
+            console.log("we got a message " + JSON.stringify(ev.data, null, 3))
+            messageList.push(`onMessage added to list \n ` +     JSON.stringify(ev.data, null, 3))
+        })
         .onRetry((i, ev) => { console.log("retry") })
         .build();
 
         console.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
 
-        cy.wait(1000)
-
-        cy.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
-
-
-
+        cy.wait(1000);
     })
 
     it('sends a message', ()=>{
         ws?.send('hello can i send you some events?');
         cy.wait(1000)
+
+        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
     })
 
     it('subsribes for user created', ()=>{
@@ -44,10 +46,12 @@ describe('the event broker client', () => {
         }
         ws?.send(JSON.stringify(msg, null, 3));
         cy.wait(1000);
+
+        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
     })
 
 
-    it('subsribes for user created', ()=>{
+    it('publish for user created', ()=>{
         const msg = {
             topic: 'publish',
             targetTopic: 'user-created',
@@ -58,6 +62,8 @@ describe('the event broker client', () => {
         }
         ws?.send(JSON.stringify(msg, null, 3));
         cy.wait(1000);
+
+        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
     })
 
 
