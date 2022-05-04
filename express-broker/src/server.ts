@@ -38,7 +38,11 @@ wss.on('connection', (ws: WebSocket) => {
                     originalMessage: jsonMsg
                 }
                 const text = JSON.stringify(answer, null, 3)
-                ws.send(text, (err) => { console.log(`send error ` + JSON.stringify(err))})
+                ws.send(text, (err) => {
+                    if (err) {
+                        console.log(`send error ` + JSON.stringify(err))
+                    }
+                })
                 // console.log('reply to subscribe has been  \n' + text);
                 return
             }
@@ -61,8 +65,12 @@ wss.on('connection', (ws: WebSocket) => {
                 }
                 const text = JSON.stringify(answer, null, 3)
                 for (const s of socketList) {
-                    s.send(text, (err) => { console.log(`send error ` + JSON.stringify(err))})
-                    console.log('have send answer to   \n' + JSON.stringify(s));
+                    s.send(text, (err) => {
+                        if (err) {
+                            console.log(`send error ` + JSON.stringify(err))
+                        }
+                    })
+                    console.log('have send answer to some service');
                 }
 
                 return

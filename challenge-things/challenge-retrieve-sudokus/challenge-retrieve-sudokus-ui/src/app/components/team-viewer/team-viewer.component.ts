@@ -1,13 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Component, OnInit, PipeTransform } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
 
+interface Team {
+  teamName: string,
+  creationDate: string,
+  challengeLost: number,
+  challengeWon: number
+}
 @Component({
   selector: 'app-team-viewer',
   templateUrl: './team-viewer.component.html',
-  styleUrls: ['./team-viewer.component.scss']
+  styleUrls: ['./team-viewer.component.scss'],
+  providers: [DecimalPipe]
 })
+
+
+
+
+
 export class TeamViewerComponent implements OnInit {
 
-  teams = [
+  teams: Team[] = [
     {
       "teamName": "Pratt",
       "creationDate": "2016-12-26",
@@ -81,8 +96,26 @@ export class TeamViewerComponent implements OnInit {
       "challengeLost": 22
     }
   ]
+
+  teams$!: Observable<Team[]>;
+  filter = new FormControl('');
+
+  search(text: string, pipe: PipeTransform): Team[] {
+    return this.teams.filter(team => {
+      const term = text.toLowerCase();
+      return team.teamName.toLowerCase().includes(term)
+          || pipe.transform(team.challengeLost).includes(term)
+          || pipe.transform(team.challengeLost).includes(term);
+    });
+  }
   
-  constructor() { }
+  constructor(pipe: DecimalPipe) {
+    this.teams$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => this.search(text, pipe))
+    );
+  }
+
 
   ngOnInit(): void {
   }

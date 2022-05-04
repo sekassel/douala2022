@@ -2,3 +2,4 @@ broker/cypress/fixtures
 broker/cypress/integration/1-getting-started
 
 express-broker/dist/server/server.js
+sudoku-entered-things/sudoku-entered-ui/package-lock.json

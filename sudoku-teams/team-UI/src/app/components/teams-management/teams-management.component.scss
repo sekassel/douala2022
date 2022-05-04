@@ -1,4 +1,6 @@
-
+html,body{
+  background-color: rgb(230, 230, 230);
+}
 .story-title {
     width: 60%;
   }
@@ -7,31 +9,9 @@
   }
   td{
     font-weight: 900;
-  }
-  .b-r{
-    border-right: solid 2px #000000;
+    font-family: 'Nova Cut', cursive;
   }
 
-  .b-l{
-    border-left: solid 2px black;
-  }
-
-  tr:nth-child(even){
-    color: rgb(11, 46, 160);
-  }
-  tr:nth-child(odd) {
-    color: rgb(21, 49, 77);
-    background-color: rgba(7, 232, 44, 0.259);
-  }
-  tr:nth-child(3){
-    border-bottom: solid 2px black;
-  }
-
- /*  .round-bord{
-    border-radius: 10%;
-    border: solid 2px red;
-    padding: 0;
-  } */
   .actions{
     float: right;
   }
@@ -39,10 +19,10 @@
     width: 15%;
   }
   .bi-bell-fill{
-    color: #000000;
+    color: rgb(5, 96, 114);
   }
   .notif-number{
-    background-color: red;
+    background-color: rgb(177, 8, 8);
     color: white;
     font-size: 11px;
     height: 13px;
@@ -61,4 +41,57 @@
     height: 100%;
     padding-top: 0;
     padding-right: 0;
+  }
+
+  .ct{
+    border-bottom: solid 2px rgb(5, 96, 114);
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 23px;
+  }
+  .ct i{
+    color: rgb(5, 213, 255);
+    font-size: 20px;
+  }
+  .ct-b{
+    border-top: solid 2px rgb(5, 96, 114);
+  }
+
+  .mt{
+    border-bottom: solid 2px rgb(184, 3, 127);
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 20px;
+  }
+  .mt i{
+    color: rgb(184, 3, 127);
+    font-size: 23px;
+  }
+  .mt-b{
+    border-top: solid 2px rgb(184, 3, 127);
+  }
+
+  .at{
+    border-bottom: solid 2px rgb(199, 82, 4);
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 20px;
+  }
+  .at i{
+    color: rgb(199, 82, 4);
+    font-size: 23px;
+  }
+  .at-b{
+    border-top: solid 2px rgb(199, 82, 4);
+  }
+
+  .pageInfo{
+
+    transform: rotate(-90deg);
+    display: inline;
+    position: absolute;
+    top: 280px;
+    left: -30px;
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+    font-weight: 800;
+    font-family: 'Great Vibes', Helvetica, sans-serif;
+    float: left;
   }
