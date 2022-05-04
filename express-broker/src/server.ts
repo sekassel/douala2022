@@ -18,14 +18,14 @@ wss.on('connection', (ws: WebSocket) => {
     ws.on('message', (message: string) => {
 
         //log the received message and send it back to the client
-        console.log('received: %s', message);
+        // console.log('received: %s', message);
 
         const msg : string = `${message}`
 
         if (msg.startsWith('{')) {
             const jsonMsg = JSON.parse(msg);
             if (jsonMsg.topic == 'subscribe') {
-                console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
+                // console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
                 const tgtTopic = jsonMsg.targetTopic;
                 var subscribers = topicMap.get(tgtTopic);
                 if (subscribers == null) {
@@ -37,21 +37,33 @@ wss.on('connection', (ws: WebSocket) => {
                     state: 'success',
                     originalMessage: jsonMsg
                 }
-                ws.send(JSON.stringify(answer, null, 3))
+                const text = JSON.stringify(answer, null, 3)
+                ws.send(text, (err) => { console.log(`send error ` + JSON.stringify(err))})
+                // console.log('reply to subscribe has been  \n' + text);
                 return
             }
 
             if (jsonMsg.topic == 'publish') {
-                console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
+                // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
                 const tgtTopic = jsonMsg.targetTopic;
 
                 // find interested sockets
                 const socketList = topicMap.get(jsonMsg.targetTopic)
                 if (socketList == null) {
+                    console.log("socket list for this topic is empty")
                     return
                 }
 
                 // send the message
+                const answer = {
+                    topic: tgtTopic,
+                    payload: jsonMsg.payload
+                }
+                const text = JSON.stringify(answer, null, 3)
+                for (const s of socketList) {
+                    s.send(text, (err) => { console.log(`send error ` + JSON.stringify(err))})
+                    console.log('have send answer to   \n' + JSON.stringify(s));
+                }
 
                 return
             }
