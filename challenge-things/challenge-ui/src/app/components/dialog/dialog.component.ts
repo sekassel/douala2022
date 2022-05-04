@@ -24,7 +24,7 @@ export class DialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    
+    this.dialogRef.close();
   }
 
   onAcceptChallenge(challenge:ChallengeData): void {

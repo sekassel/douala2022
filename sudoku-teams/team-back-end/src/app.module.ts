@@ -5,8 +5,9 @@ import { BuilderModule } from './module/builder/builder.module';
 import {MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [BuilderModule,
-    MongooseModule.forRoot('mongodb+srv://Neambo:Ne@mbo1998@cluster0.ic5iv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+  imports: [
+    MongooseModule.forRoot('mongodb+srv://Neambo:rU9r5MNEz9qJfL4a@cluster0.ic5iv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    BuilderModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,36 +8,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./creating-team.component.scss']
 })
 export class CreatingTeamComponent implements OnInit {
-    use = ""
-    teamName = ""
-    teamResul = ""
+  useName = ""
+  teamName = ""
+    
 
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get<any>('localhost:4000/query/user')
+   /*  this.http.get<any>('localhost:4000/query/user')
     .subscribe(
       answer => this.handleQueryResponse(answer),
       error => this.teamResul = JSON.stringify(error, null,3)
-    );
+    ); */
   }
-handleQueryResponse(answer: any){
+/* handleQueryResponse(answer: any){
     console.log(answer)
     this.use = answer
   }
-  
+   */
   newTeam(){
-    const param = {
-      use:this.use,
-      teamName:this.teamName
+    if(this.useName == "" && this.teamName== ""){
+      this.router.navigate(['/manageTeams/creating-team'])
     }
-
-    this.http.post<any>('localhost:4000/new', param).subscribe (
-      (response)=>{
-     this.router.navigate(['/manageTeams'])
-    },
-     error => console.log(`error  ${JSON.stringify(error, null, 3)}` )
-   );
-  }
- 
+    else{
+      const param = {
+        useName:this.useName,
+        teamName:this.teamName
+        
+      }
+  
+      this.http.post<any>('http://localhost:3000/new', param).subscribe (
+        (data)=>{
+          console.log(`data  ${JSON.stringify(param, null, 3)}`)
+          console.log(`data  ${JSON.stringify(data, null, 3)}`)
+        this.router.navigate(['/manageTeams'])
+      },
+       error => console.log(`error   rien ${JSON.stringify(error, null, 3)}` )
+     );
+    }
+    
+    }
+    
 }
