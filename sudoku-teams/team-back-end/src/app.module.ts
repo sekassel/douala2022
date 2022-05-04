@@ -3,13 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BuilderModule } from './module/builder/builder.module';
 import {MongooseModule } from '@nestjs/mongoose';
-import { BuilderService } from './module/builder/builder. service';
 
 @Module({
-  imports: [BuilderModule,
-    MongooseModule.forRoot('mongodb+srv://Neambo:Ne@mbo1998@cluster0.ic5iv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+  imports: [
+    MongooseModule.forRoot('mongodb+srv://Neambo:rU9r5MNEz9qJfL4a@cluster0.ic5iv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    BuilderModule
   ],
   controllers: [AppController],
-  providers: [AppService,BuilderService],
+  providers: [AppService],
 })
 export class AppModule {}

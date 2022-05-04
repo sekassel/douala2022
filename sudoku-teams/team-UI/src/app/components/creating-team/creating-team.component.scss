@@ -1,28 +1,49 @@
-.container{
-    box-shadow: 5px 5px 0.5 black;
-    margin-top: 7%;
-    border: 1px olive solid;
-    width: 75%;
-    background-color: rgba(56, 44, 44,0.5);
-    border-radius:25px;
-}
-
-h1{
-    font-size: 250%;
-    font-weight: bold;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-label{
-    font-family: 'Lucida Sans';
-    font-size: 150%;
-}
-input{
-    width: 75%;
-    margin-left: 10%;
-}
-button{
-    margin-left: 25%;
-    width: 20%;
-    height: 25%;
-}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  
+  /* Overwrite default styles of hr */
+  hr {
+    border: 2px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  /* Set a style for the submit button */
+  .registerbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
