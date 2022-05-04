@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChallengeData, CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-challenge-details',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengeDetailsComponent implements OnInit {
 
-  constructor() { }
+  dataChallenge: ChallengeData|any
+
+  constructor(
+    private communicationService: CommunicationService
+  ) { 
+    this.dataChallenge = communicationService.challenge;
+  }
 
   ngOnInit(): void {
   }
