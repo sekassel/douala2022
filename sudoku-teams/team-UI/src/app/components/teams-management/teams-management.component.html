@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+  <div class="container justify-align-center">
+    <div class="story-title">
+      <table class="table table-striped">
+        <thead class="">
+            <th scope="col">List of Teams <i class="bi bi-people-fill mx-5"></i></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of myTeams">
+            <td class="text-center b-r">
+              {{team}}
+              <div class="actions">
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-dash text-danger"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr class="text-center"><i class="bi bi-caret-down-fill"></i>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="story-title">
+      <table class="table table-striped">
+        <thead class="">
+            <th scope="col">Created teams <a id='createMore' class="btn" routerLink="/manageTeams/creating-team"><i class="bi bi-plus-circle mx-3"></i></a></th>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let team of createdTeams">
+            <td>
+              {{team}}
+            </td>
+            <td class="actionrow b-r">
+              <div class="actions">
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-dash-circle text-danger"></i>
+                </a>
+                <a id='' class="btn" routerLink="/manageTeams/managemyteam">
+                  <i class="bi bi-bell-fill"></i>
+                  <span class="notif-number align-top">10</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="story-title">
+      <table class="table table-striped">
+        <thead class="">
+            <th scope="col">Teams List</th>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let team of allTeams">
+            <td class="b-r">{{team}}
+              <div class="actions">
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-dice-2 mx-5"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</html>
