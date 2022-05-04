@@ -1,0 +1,28 @@
+<h1 mat-dialog-title class="option text-center">Team A &dash; Challenges</h1>
+<hr>
+<div mat-dialog-content class="option">
+    <div id="id-staff-mat-tab-all-content"  class="row container-fluid">
+        <div  *ngFor="let data of datas">
+            <div class="d-flex align-center justify-content-between" *ngIf="data.new">
+                <h2 class="fw-light">{{data.challengeName}}  {{data.date}}</h2>
+                <div>
+                    <button (click)="onAcceptChallenge(data)" class="btn btn-sm btn-primary me-2">Accept</button>
+                    <button (click)="onDeclineChallenge(data)" class="btn btn-sm btn-danger">Decline</button>
+                </div>
+            </div>
+        </div>
+        <div  *ngFor="let data of datas">
+            <div class="d-flex align-center justify-content-between" *ngIf="data.accpeted">
+                <h2 class="fw-light" >
+                    <button class="button" (click)="goToTheDetails(data)">
+                        {{data.challengeName}}  {{data.date}}
+                    </button>
+                </h2>
+            </div>
+        </div>
+    </div> 
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <!-- <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button> -->
+</div>
