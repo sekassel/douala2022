@@ -4,10 +4,9 @@
   "description": "express broker",
   "main": "index.js",
   "scripts": {
-    "test": "testbroker",
     "build": "tsc",
-    "start": "node dist/server/server.js",
-    "watch": "ts-node src/server.ts --watch"
+    "start:prod": "node dist/server/server.js",
+    "start": "ts-node src/server.ts --watch"
   },
   "author": "",
   "license": "ISC",
