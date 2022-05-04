@@ -8,9 +8,9 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DialogComponent } from './dialog/dialog.component' 
+import { DialogComponent } from './components/dialog/dialog.component' 
 import { MatCardModule } from '@angular/material/card';
-import { ChallengeDetailsComponent } from './challenge-details/challenge-details.component';
+import { ChallengeDetailsComponent } from './components/challenge-details/challenge-details.component';
 
 
 
