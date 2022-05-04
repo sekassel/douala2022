@@ -10,6 +10,7 @@ export class AppService {
   handleCommand(team: team) {
     throw new Error('Method not implemented.');
   }
+  
   getHello(): string {
     return 'Hello cour!';
   }
