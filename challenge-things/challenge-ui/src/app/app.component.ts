@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
-import { CommunicationService } from './services/communication.service';
+import { ChallengeData, CommunicationService } from './services/communication.service';
 import { Router } from '@angular/router';
 
 
@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'challenge-ui';
-
+  dataChallenge: ChallengeData;
+  dataIsAllow = false;
   
 
 
@@ -22,7 +23,9 @@ export class AppComponent {
     public dialog: MatDialog,
     private communicationService: CommunicationService,
     private router: Router
-  ) {}
+  ) {
+    this.dataChallenge = communicationService.challenge;
+  }
 
 
   ngOnInit(): void {
@@ -34,8 +37,9 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.communicationService.challenge = result;
-      this.router.navigate(['/details']);
+      this.dataChallenge = result;
+      this.dataIsAllow = true;
+      // this.router.navigate(['/details']);
     });
   }
 

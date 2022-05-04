@@ -6,18 +6,46 @@ export interface ChallengeData {
   date: string;
   new: boolean;
   accpeted: boolean;
+  sudokus: SudokuSchema[];
+}
+
+export interface SudokuSchema{
+  name: string;
+  player: string;
+  status: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
-  challenge?: ChallengeData
+  challenge: ChallengeData = {
+    challengeName: "",
+    date: "",
+    new: false,
+    accpeted: false,
+    sudokus: []
+  };
 
   sudokuData = [
     {
       name: "sudoku 1",
       player: "Eric",
+      status: ""
+    },
+    {
+      name: "sudoku 2",
+      player: "Albert",
+      status: ""
+    },
+    {
+      name: "sudoku 3",
+      player: "Franck",
+      status: ""
+    },
+    {
+      name: "sudoku 4",
+      player: "Armelle",
       status: ""
     }
   ]
@@ -27,19 +55,22 @@ export class CommunicationService {
       challengeName: "name1",
       date: "21 may 2022",
       new: true,
-      accpeted: false
+      accpeted: false,
+      sudokus: this.sudokuData
     },
     {
       challengeName: "name2",
       date: "21 may 2022",
       new: true,
-      accpeted: false
+      accpeted: false,
+      sudokus: this.sudokuData
     },
     {
       challengeName: "name3",
       date: "21 may 2022",
       new: true,
-      accpeted: false
+      accpeted: false,
+      sudokus: this.sudokuData
     }
   ]
 
