@@ -1,0 +1,27 @@
+<div class="team p-2 mx-2">
+    <h3 class="text-center h3">Team {{ teamName }}</h3>
+
+    <div class="dateCr"> 
+        <div class="date-label">Date: </div>
+       <div class="date-value"> {{ creationDate }}</div>
+    </div>
+
+
+
+
+
+    <button [id]="teamName" type="button" (click)="open(inviteModal)" class="btn btn-primary mt-auto">Invite</button>
+</div>
+
+<ng-template #inviteModal let-c let-d>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Challenge invitation</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>Hello, World!</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    </div>
+</ng-template>
