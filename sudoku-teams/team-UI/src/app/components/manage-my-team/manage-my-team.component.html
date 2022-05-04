@@ -5,17 +5,23 @@
   </head>
   <div class="container justify-align-center">
     <div class="story-title">
-      <table class="table table-striped">
+      <table class="table">
         <thead class="">
-            <th scope="col">List of Teams <i class="bi bi-people-fill mx-5"></i></th>
+            <th scope="col"><i class="bi bi-box-arrow-in-right"></i> Requests</th>
         </thead>
         <tbody>
-          <tr *ngFor="let team of myTeams">
-            <td class="text-center b-r">
-              {{team}}
+          <tr *ngFor="let request of requests">
+            <td class="text-center b-r b-l">
+              <div class="profile-pic">
+                <img src={{img}} alt="Profile Picture">
+              </div>
+              {{request}}
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
-                  <i class="bi bi-dash text-danger"></i>
+                  <i class="bi bi-person-check-fill"></i>
+                </a>
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-person-x-fill"></i>
                 </a>
               </div>
             </td>
@@ -27,24 +33,16 @@
     </div>
 
     <div class="story-title">
-      <table class="table table-striped">
+      <table class="table">
         <thead class="">
-            <th scope="col">Created teams <a id='createMore' class="btn" routerLink="/manageTeams/creating-team"><i class="bi bi-plus-circle mx-3"></i></a></th>
+            <th scope="col"><i class="bi bi-hourglass-split"></i>Pending invitations</th>
         </thead>
         <tbody>
-          <tr class="text-center" *ngFor="let team of createdTeams">
-            <td>
-              {{team}}
-            </td>
-            <td class="actionrow b-r">
+          <tr class="text-center" *ngFor="let inv of invitations">
+            <td class ="b-r b-l">
+              {{inv}}
               <div class="actions">
-                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
-                  <i class="bi bi-dash-circle text-danger"></i>
-                </a>
-                <a id='' class="btn" routerLink="/manageTeams/managemyteam">
-                  <i class="bi bi-bell-fill"></i>
-                  <span class="notif-number align-top">10</span>
-                </a>
+                  <i class="bi bi-three-dots"></i>
               </div>
             </td>
           </tr>
@@ -54,21 +52,20 @@
     </div>
 
     <div class="story-title">
-      <table class="table table-striped">
+      <table class="table">
         <thead class="">
-            <th scope="col">Teams List</th>
+            <th scope="col"><i class="bi bi-people-fill"></i>Team's Members</th>
         </thead>
         <tbody>
-          <tr class="text-center" *ngFor="let team of allTeams">
-            <td class="b-r">{{team}}
+          <tr class="text-center" *ngFor="let member of members">
+            <td class="b-r b-l">{{member}}
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
-                  <i class="bi bi-dice-2 mx-5"></i>
+                  <i class="bi bi-dash-circle"></i>
                 </a>
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
         </tbody>
       </table>
     </div>
