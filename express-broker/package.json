@@ -4,7 +4,6 @@
   "description": "express broker",
   "main": "index.js",
   "scripts": {
-    "test": "testbroker",
     "build": "tsc",
     "start:prod": "node dist/server/server.js",
     "start": "ts-node src/server.ts --watch"
