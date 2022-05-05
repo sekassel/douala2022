@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { InviteModalComponent } from '../invite-modal/invite-modal.component';
 
@@ -10,7 +10,29 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class TeamComponent implements OnInit {
 
-  content?: any;
+
+  invitation = {
+    username: "",
+    challengeId: "AEZ2",
+    teamInvited: "Marquez",
+    time: new Date()
+  };
+
+  challenges = [
+    {
+      challengeName: 'Drill country',
+      createdBy: 'Ate',
+    },
+    {
+      challengeName: 'Sudoku king',
+      createdBy: 'Theone',   
+    },
+    {
+      challengeName: 'Sudjutsu',
+      createdBy: 'Ate',     
+    }
+  ];
+
   @Input()
   teamName!: string;
 
@@ -23,7 +45,6 @@ export class TeamComponent implements OnInit {
   @Input()
   challengeLost!: number;
 
-  invite = new FormControl('');
 
   constructor(
     protected modalService: NgbModal,
@@ -34,7 +55,8 @@ export class TeamComponent implements OnInit {
   }
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+    const modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+
   }
 
 
