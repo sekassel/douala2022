@@ -27,6 +27,9 @@ export interface EventDTO {
 })
 
 export class CommunicationService {
+
+  static challenges: any=[];
+
   
   static challenge: ChallengeData = {
     challengeName: "",
