@@ -1,4 +1,6 @@
 export default class Team{
-    useName:string
+    admin:string
     teamName:string
+    members:Array<String>
+    
 }

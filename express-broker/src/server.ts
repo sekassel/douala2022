@@ -123,7 +123,10 @@ function handlePublish(jsonMsg: any) {
             eventList = []
             eventMap.set(answer.topic, eventList)
         }
-        eventList.push(answer)
+        if ( newevent(answer, eventList)){
+            eventList.push(answer)
+        }
+        
 
         console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
 
@@ -154,3 +157,22 @@ function handlePublish(jsonMsg: any) {
         return
     }
 }
+
+ function newevent(event:any, list:any[]){
+     for (const oldEvent of list) {
+         const newPayload = event.payload
+         const oldPayload = oldEvent.payload
+         let valuesAreEqual = true
+        for (const field of newPayload) {
+            if(newPayload[field] != oldPayload[field]){
+                valuesAreEqual = false
+                break
+            }
+            
+        }
+      if(valuesAreEqual)
+        return false
+        
+     }
+     return true
+ }
