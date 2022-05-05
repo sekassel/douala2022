@@ -14,9 +14,9 @@ export class BuilderService implements OnModuleInit {
     }   
     async store(team: Team) {
         console.log('toring.....');
-        
+        team.members.push(team.admin)
         const c =  await  this.TeamModel.findOneAndUpdate(
-            { useName:team.useName},
+            { teamName:team.teamName},
             team,
             {upsert:true, new: true}).exec();
 
