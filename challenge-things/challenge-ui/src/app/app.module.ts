@@ -11,14 +11,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogComponent } from './components/dialog/dialog.component' 
 import { MatCardModule } from '@angular/material/card';
 import { ChallengeDetailsComponent } from './components/challenge-details/challenge-details.component';
-
+import { ChallengeNotificationComponent } from './components/challenge-notification/challenge-notification.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    ChallengeDetailsComponent
+    ChallengeDetailsComponent,
+    ChallengeNotificationComponent
   ],
   imports: [
     BrowserModule,
