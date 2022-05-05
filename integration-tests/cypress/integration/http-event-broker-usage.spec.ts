@@ -32,7 +32,8 @@ describe("the event broker" , () => {
     })
 
     it('delivers lists of events if asked via http.get', () => {
-        cy.request('GET', 'http://localhost:3333/topic?id=user-created').then((response) => {
+        cy.request('GET', 'http://localhost:3333/topic?id=user-created')
+        .then((response) => {
             messageList.push(response.body)
             console.log('get response.body is ' + response.body)
         })

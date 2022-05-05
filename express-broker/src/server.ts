@@ -6,9 +6,13 @@ import * as WebSocket from 'ws';
 import bodyParser = require('body-parser')
 import url = require('url');
 import querystring = require('querystring');
+import cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors({
+    origin: '*'
+}));
 
 //initialize a simple http server
 const server = http.createServer(app);
