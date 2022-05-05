@@ -121,7 +121,7 @@ function handlePublish(jsonMsg: any) {
         }
         eventList.push(answer)
 
-        // console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList)}`)
+        console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
 
 
         // find interested sockets
