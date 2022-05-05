@@ -1,0 +1,26 @@
+{
+  "name": "express-broker",
+  "version": "1.0.0",
+  "description": "express broker",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:prod": "node dist/server/server.js",
+    "start": "ts-node-dev src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "ws": "^8.6.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/ws": "^8.5.3",
+    "typescript": "^4.6.4"
+  }
+}
