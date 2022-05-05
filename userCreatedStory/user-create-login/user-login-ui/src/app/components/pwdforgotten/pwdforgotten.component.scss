@@ -15,10 +15,9 @@
   padding: 0;
 }
 
-.mcontainer
-{
+.mcontainer {
   position: absolute;
-  background-color: rgb(245, 247, 247);
+  background-color: rgb(242, 242, 242);
   min-width: 100%;
   min-height: 100vh;
   max-height: 100vh;
@@ -26,63 +25,81 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
-  .formcard{
+
+  .formcard {
     padding: 1.5em;
+    box-shadow: -1px 2px 20px -5px rgba(242, 241, 241, 0.64);
+    -webkit-box-shadow: -1px 2px 20px -5px rgba(255, 255, 255, 0.64);
+    -moz-box-shadow: -1px 2px 20px -5px rgba(240, 240, 240, 0.64);
     border-radius: 10px;
     max-height: 75%;
     min-height: 30%;
     max-width: 24em;
     min-width: 24em;
-    margin: auto;
+
     display: grid;
     flex-direction: column;
-    .mcard:nth-child(1){
+    margin: auto;
+
+
+
+    .mcard:nth-child(1) {
       min-height: 11.6em;
       max-height: 11.6em;
       margin-bottom: 20px;
-      img{
+
+      img {
         min-width: 100%;
         max-width: 100%;
         min-height: 95%;
         max-height: 95%;
         transform: scale(120%);
       }
-      p{
+
+      p {
         text-align: center;
       }
     }
-    .mcard:nth-child(2){
+
+    .mcard:nth-child(2) {
       min-height: 5.1em;
       max-height: 5.1em;
       margin-bottom: 10px;
     }
-    .mcard{
-      min-height:2.6em;
-      max-height:2.6em;
+
+    .mcard {
+      min-height: 2.6em;
+      max-height: 2.6em;
       margin-bottom: 10px;
       display: grid;
-      input{
+
+      input {
         text-align: center;
       }
     }
-    img{
+
+    img {
       max-height: 5em;
     }
-    .mybtn1{
+
+    .mybtn1 {
       justify-self: center;
       width: 70%;
       margin-left: 10%;
       color: white;
       font-weight: bold;
       font-size: 1.2em;
+      box-shadow: -1px 2px 20px -5px rgba(160, 149, 149, 0.64);
+      -webkit-box-shadow: -1px 2px 20px -5px rgba(178, 166, 166, 0.64);
+      -moz-box-shadow: -1px 2px 20px -5px rgba(161, 149, 149, 0.64);
 
-      svg{
+      svg {
         width: 1em;
       }
     }
   }
 
-  .footer{
+  .footer {
     font-family: Handlee;
     text-align: center;
   }
