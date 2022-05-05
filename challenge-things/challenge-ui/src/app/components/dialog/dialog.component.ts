@@ -18,7 +18,7 @@ export class DialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public datas: ChallengeData[]) { }
+    @Inject(MAT_DIALOG_DATA) public challenges: ChallengeData[]) { }
 
   ngOnInit(): void {
   }
