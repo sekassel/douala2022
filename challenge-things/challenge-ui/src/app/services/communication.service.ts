@@ -18,8 +18,9 @@ export interface SudokuSchema{
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommunicationService {
-  challenge: ChallengeData = {
+  static challenge: ChallengeData = {
     challengeName: "",
     date: "",
     new: false,

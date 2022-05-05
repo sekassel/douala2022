@@ -3,3 +3,5 @@ broker/cypress/integration/1-getting-started
 
 express-broker/dist/server/server.js
 sudoku-entered-things/sudoku-entered-ui/package-lock.json
+integration-tests/node_modules.7z
+express-broker/package-lock.json

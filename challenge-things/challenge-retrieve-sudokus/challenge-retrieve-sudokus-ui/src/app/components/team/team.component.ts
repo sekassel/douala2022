@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { InviteModalComponent } from '../invite-modal/invite-modal.component';
 
@@ -22,6 +23,7 @@ export class TeamComponent implements OnInit {
   @Input()
   challengeLost!: number;
 
+  invite = new FormControl('');
 
   constructor(
     protected modalService: NgbModal,
@@ -29,7 +31,6 @@ export class TeamComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-   
   }
 
   open(content: any) {
