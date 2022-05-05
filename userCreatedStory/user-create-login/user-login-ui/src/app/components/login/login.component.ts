@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { json } from 'express'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
           token: '21345621'
       }
     }
-    console.log('trying to push Albert to user created' + JSON.stringify(params,null, 3));
+    console.log('trying to push Albert to user created');
 
     this.http.get<string>('http://localhost:3333')
     .subscribe(
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.http.post('http://localhost:3333/publish', params)
     .subscribe(
-      answer => console.log('post got an answer'),
+      answer => console.log('post got answer \n' + JSON.stringify(answer, null, 3)),
       error => console.log('post got an error')
     )
     this.validNames=['john','joe','carlie','alice'];
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
 
 
   async connexion(){
-    console.log('help')
+    console.log('connexion started')
     const params={
       topic: 'publish',
       targetTopic: 'user-created',
@@ -77,16 +78,20 @@ export class LoginComponent implements OnInit {
           password: this.formGroup.get('password')?.value,
           token: '21345621'
       }
-
-
     }
 
     try {
+      this.http.post<any>('http://localhost:3333/publish',params)
+      .subscribe(
+        answer => console.log('post publish got an answer' + JSON.stringify(answer, null, 3)),
+        error => console.log('post publish got an error')
+      )
 
-          const postResponse = await this.http.post<any>('http://localhost:3333/publish',params)
-          console.log('post request done')
-          const response = await this.http.get<any[]>('http://localhost:3333/topic?id=user-created');
-          console.log(response)
+      this.http.get<any[]>('http://localhost:3333/topic?id=user-created')
+      .subscribe(
+        answer => console.log('get topic got an answer' + JSON.stringify(answer, null, 3)),
+        error => console.log('get topic got an error')
+      )
 
     } catch (error) {
       console.log(JSON.stringify(error,null,3))
