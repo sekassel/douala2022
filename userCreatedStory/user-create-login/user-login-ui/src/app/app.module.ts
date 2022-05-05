@@ -9,7 +9,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PwdforgottenComponent } from './components/pwdforgotten/pwdforgotten.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,9 @@ import { PwdforgottenComponent } from './components/pwdforgotten/pwdforgotten.co
     PwdforgottenComponent
   ],
   imports: [
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
@@ -27,7 +31,8 @@ import { PwdforgottenComponent } from './components/pwdforgotten/pwdforgotten.co
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+
   ],
   providers: [ServiceWorker],
   bootstrap: [AppComponent]
