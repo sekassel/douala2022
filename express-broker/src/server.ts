@@ -4,9 +4,15 @@ import * as WebSocket from 'ws';
 
 
 import bodyParser = require('body-parser')
+import url = require('url');
+import querystring = require('querystring');
+import cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors({
+    origin: '*'
+}));
 
 //initialize a simple http server
 const server = http.createServer(app);
@@ -20,15 +26,32 @@ const eventMap: Map<string, any[]> = new Map();
 
 // let us have an post endpoint for publishing new events
 app.post('/publish', (req, res) => {
-    console.log
     const jsonMsg = req.body;
     console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
     handlePublish(jsonMsg)
-    res.send('Thank you')
+    res.send({
+        msg: 'Thank you'
+    })
 })
 
+
+app.get('/topic', (req, res) => {
+    let id = `${req.query.id}`
+
+    let eventList = eventMap.get(id)
+    console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+    if ( ! eventList) {
+        eventList = []
+    }
+    res.send(JSON.stringify(eventList, null, 3))
+})
+
+
+
 app.get('/', (req, res) => {
-    res.send('Welcome to the Douala2022 Event Broker.')
+    res.send({
+        msg: 'Welcome to the Douala2022 Event Broker.'
+    })
 })
 
 
@@ -90,21 +113,11 @@ function handlePublish(jsonMsg: any) {
         // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
 
-        // find interested sockets
-        const socketList = topicMap.get(jsonMsg.targetTopic)
-        if (socketList == null) {
-            console.log("socket list for this topic is empty")
-            return
-        }
-
-        // send the message
+        // store in eventMap
         const answer = {
             topic: tgtTopic,
             payload: jsonMsg.payload
         }
-        const text = JSON.stringify(answer, null, 3)
-
-        // store in eventMap
         var eventList = eventMap.get(answer.topic);
         if ( ! eventList) {
             eventList = []
@@ -112,6 +125,18 @@ function handlePublish(jsonMsg: any) {
         }
         eventList.push(answer)
 
+        console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
+
+
+        // find interested sockets
+        const socketList = topicMap.get(jsonMsg.targetTopic)
+        if (socketList == null) {
+            // console.log("socket list for this topic is empty")
+            return
+        }
+
+        // send the message
+        const text = JSON.stringify(answer, null, 3)
 
         // send to subscribers
         for (const s of socketList) {

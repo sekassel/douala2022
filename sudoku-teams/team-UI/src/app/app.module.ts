@@ -8,6 +8,7 @@ import { CreatingTeamComponent } from './components/creating-team/creating-team.
 import { TeamsManagementComponent } from './components/teams-management/teams-management.component';
 import { ManageMyTeamComponent } from './components/manage-my-team/manage-my-team.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
