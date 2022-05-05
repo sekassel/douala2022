@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import Team from './module/builder/team';
 
 @Controller()
 export class AppController {
@@ -12,7 +13,7 @@ export class AppController {
   }
 
   @Post('new')
-  async postTeam(@Body() team: any){
+  async postTeam(@Body() team: Team){
     try{
       this.logger.log('poteam.................;')
       const c = await this.appService.handleTeam(team);

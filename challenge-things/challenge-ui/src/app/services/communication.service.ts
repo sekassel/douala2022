@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { WebsocketService } from './websocket.service'
 
 
 export interface ChallengeData {
   challengeName: string;
-  date: string;
-  new: boolean;
-  accpeted: boolean;
-  sudokus: SudokuSchema[];
+  date?: string;
+  new?: boolean;
+  accpeted?: boolean;
+  sudokus?: SudokuSchema[];
 }
 
 export interface SudokuSchema{
@@ -15,11 +16,22 @@ export interface SudokuSchema{
   status: string;
 }
 
+export interface EventDTO {
+  topic:string;
+  targetTopic:string;
+  payload?:any
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommunicationService {
-  challenge: ChallengeData = {
+
+  static challenges: any=[];
+
+  
+  static challenge: ChallengeData = {
     challengeName: "",
     date: "",
     new: false,
@@ -74,5 +86,7 @@ export class CommunicationService {
     }
   ]
 
-  constructor() { }
+  constructor(private ws:WebsocketService) { 
+    
+  }
 }
