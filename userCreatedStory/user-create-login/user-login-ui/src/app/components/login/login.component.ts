@@ -14,9 +14,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // just put some example data into server
-    console.log('trying to push Albert to user created');
-    const
-    this.http.post('http://localhost:3333/publish')
+    const params={
+      topic: 'publish',
+      targetTopic: 'user-created',
+      payload: {
+          userName: 'Rene',
+          password: 'secret',
+          token: '21345621'
+      }
+    }
+    console.log('trying to push Albert to user created' + JSON.stringify(params,null, 3));
+
+    this.http.get<string>('http://localhost:3333')
+    .subscribe(
+      answer => console.log('get got an answer'),
+      error => console.log('get got an error')
+    )
+
+    this.http.post('http://localhost:3333/publish', params)
+    .subscribe(
+      answer => console.log('post got an answer'),
+      error => console.log('post got an error')
+    )
     this.validNames=['john','joe','carlie','alice'];
     this.validPassword=['1234','5678','91011','131415'];
     this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(
