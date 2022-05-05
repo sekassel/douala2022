@@ -13,6 +13,10 @@ export class LoginComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
+    // just put some example data into server
+    console.log('trying to push Albert to user created');
+    const
+    this.http.post('http://localhost:3333/publish')
     this.validNames=['john','joe','carlie','alice'];
     this.validPassword=['1234','5678','91011','131415'];
     this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(
