@@ -41,8 +41,8 @@ export class AppComponent {
     this.sudokuGrid.forEach(elt => elt.forEach(e =>{
       cnt++;
       e < 0? found++ : found;}));
-    console.log(found,"Hidden numbers")
-    console.log(cnt, "Entries found");
+    console.log(' %d Hidden numbers', found);
+    console.log(' %d Entries found', cnt);
     return found > 0 && cnt == 81? true : false;
    }
   setRow(msg: string){
