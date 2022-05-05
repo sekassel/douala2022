@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,9 @@ export class CreatingTeamComponent implements OnInit {
   teamName = ""
     
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, 
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
    /*  this.http.get<any>('localhost:4000/query/user')
@@ -41,12 +43,12 @@ export class CreatingTeamComponent implements OnInit {
         (data)=>{
           console.log(`data  ${JSON.stringify(param, null, 3)}`)
           console.log(`data  ${JSON.stringify(data, null, 3)}`)
-        this.router.navigate(['/manageTeams'])
+          this.router.navigate(['/manageTeams'])
       },
        error => console.log(`error   rien ${JSON.stringify(error, null, 3)}` )
      );
     }
-    
+
     }
     
 }

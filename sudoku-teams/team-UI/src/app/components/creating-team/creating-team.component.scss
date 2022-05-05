@@ -11,6 +11,7 @@ body {
   .container {
     padding: 16px;
     background-color: white;
+    width: 50%;
   }
   
   /* Full-width input fields */
@@ -28,8 +29,13 @@ body {
   
   /* Overwrite default styles of hr */
   hr {
-    border: 2px solid #f1f1f1;
+    border: 2px solid #2e2a2a;
     margin-bottom: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  label{
+      font-family: 'Gret Vibes';
   }
   
   /* Set a style for the submit button */
