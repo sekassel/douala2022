@@ -13,14 +13,27 @@ export class BuilderService implements OnModuleInit {
     onModuleInit() {
     }   
     async store(team: Team) {
-        console.log('toring.....');
-        
-        const c =  await  this.TeamModel.findOneAndUpdate(
-            { useName:team.useName},
-            team,
-            {upsert:true, new: true}).exec();
+        const collection = await this.TeamModel.find({teamName:team.teamName})
 
-            return c;
+        console.log('collection', collection)
+        console.log('team builde',team)
+
+        if(collection != []){
+             return 'this team exit in the data base'   
+        }else{
+            const Nteam={
+                admin:team.admin,
+                teamName:team.teamName,
+                members:team.members.push(team.admin)
+            }
+            console.log('Nteam ', Nteam)
+            const c =  await  this.TeamModel.findOneAndUpdate (
+                { teamName:team.teamName},
+                Nteam,
+                {upsert:true, new: true}).exec();
+                return c; 
+        }       
+                
     }
     
 }

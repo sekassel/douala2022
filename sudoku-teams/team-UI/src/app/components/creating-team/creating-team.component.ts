@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./creating-team.component.scss']
 })
 export class CreatingTeamComponent implements OnInit {
-  useName = ""
+  admin = ""
   teamName = ""
+
     
 
   constructor(private http: HttpClient, 
@@ -29,20 +30,17 @@ export class CreatingTeamComponent implements OnInit {
   }
    */
   newTeam(){
-    if(this.useName == "" && this.teamName== ""){
+    if(this.admin == "" && this.teamName== ""){
       this.router.navigate(['/manageTeams/creating-team'])
     }
     else{
       const param = {
-        useName:this.useName,
-        teamName:this.teamName
-        
+        admin:this.admin,
+        teamName:this.teamName,
       }
   
       this.http.post<any>('http://localhost:3000/new', param).subscribe (
         (data)=>{
-          console.log(`data  ${JSON.stringify(param, null, 3)}`)
-          console.log(`data  ${JSON.stringify(data, null, 3)}`)
           this.router.navigate(['/manageTeams'])
       },
        error => console.log(`error   rien ${JSON.stringify(error, null, 3)}` )
