@@ -47,5 +47,32 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  connexion(){}
+
+  async connexion(){
+    console.log('help')
+    const params={
+      topic: 'publish',
+      targetTopic: 'user-created',
+      payload: {
+          userName: this.formGroup.get('username')?.value,
+          password: this.formGroup.get('password')?.value,
+          token: '21345621'
+      }
+
+
+    }
+
+    try {
+
+          const postResponse = await this.http.post<any>('http://localhost:3333/publish',params)
+          console.log('post request done')
+          const response = await this.http.get<any[]>('http://localhost:3333/topic?id=user-created');
+          console.log(response)
+
+    } catch (error) {
+      console.log(JSON.stringify(error,null,3))
+    }
+
+  }
+
 }

@@ -10,7 +10,7 @@
     </div>
 
     <div class="formcontainer">
-      <div class="formcard" [formGroup]="formGroup" (ngSubmit)="connexion()">
+      <form class="formcard" [formGroup]="formGroup" (ngSubmit)="connexion()">
         <div class="mcard logos">
           <img src="./../../../assets/microservices.jpg" alt="">
           <img src="./../../../assets/fs.PNG" alt="">
@@ -48,7 +48,7 @@
         <div class="mcard">
           <button class="btn mybtn2" routerLink="/addUser"> Sign up </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div class="footer">
