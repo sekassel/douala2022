@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommunicationService } from './services/communication.service';
+import { WebsocketService } from './services/websocket.service';
 
 
 
@@ -10,7 +12,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
    
-  constructor(){}
+  constructor(){
+    
+  }
+
+  
 
   ngOnInit(): void {
   }

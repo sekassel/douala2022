@@ -15,12 +15,16 @@ export class ChallengeNotificationComponent implements OnInit {
   dataIsAllow = false;
   
 
+   // New props
+   challenges: Array<object> = [];
+   sudokus: Array<object> = [];
+
 
   constructor(
     public dialog: MatDialog,
-    private communicationService: CommunicationService,
     private router: Router
   ) {
+
     
   }
 
@@ -28,7 +32,6 @@ export class ChallengeNotificationComponent implements OnInit {
   ngOnInit(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '50%',
-      data: this.communicationService.dataSend,
       disableClose: true
     });
 
@@ -39,4 +42,10 @@ export class ChallengeNotificationComponent implements OnInit {
     });
   }
 
+
+  
+
+  // sendMsg(event:EventDTO) {
+  //   this.ws.events.next(event);
+  // }
 }
