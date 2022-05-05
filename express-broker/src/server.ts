@@ -4,6 +4,8 @@ import * as WebSocket from 'ws';
 
 
 import bodyParser = require('body-parser')
+import url = require('url');
+import querystring = require('querystring');
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,12 +22,25 @@ const eventMap: Map<string, any[]> = new Map();
 
 // let us have an post endpoint for publishing new events
 app.post('/publish', (req, res) => {
-    console.log
     const jsonMsg = req.body;
-    console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
+    // console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
     handlePublish(jsonMsg)
     res.send('Thank you')
 })
+
+
+app.get('/topic', (req, res) => {
+    let id = `${req.query.id}`
+
+    let eventList = eventMap.get(id)
+    // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+    if ( ! eventList) {
+        eventList = []
+    }
+    res.send(JSON.stringify(eventList, null, 3))
+})
+
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Douala2022 Event Broker.')
@@ -90,6 +105,21 @@ function handlePublish(jsonMsg: any) {
         // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
 
+        // store in eventMap
+        const answer = {
+            topic: tgtTopic,
+            payload: jsonMsg.payload
+        }
+        var eventList = eventMap.get(answer.topic);
+        if ( ! eventList) {
+            eventList = []
+            eventMap.set(answer.topic, eventList)
+        }
+        eventList.push(answer)
+
+        // console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList)}`)
+
+
         // find interested sockets
         const socketList = topicMap.get(jsonMsg.targetTopic)
         if (socketList == null) {
@@ -98,20 +128,7 @@ function handlePublish(jsonMsg: any) {
         }
 
         // send the message
-        const answer = {
-            topic: tgtTopic,
-            payload: jsonMsg.payload
-        }
         const text = JSON.stringify(answer, null, 3)
-
-        // store in eventMap
-        var eventList = eventMap.get(answer.topic);
-        if ( ! eventList) {
-            eventList = []
-            eventMap.set(answer.topic, eventList)
-        }
-        eventList.push(answer)
-
 
         // send to subscribers
         for (const s of socketList) {
