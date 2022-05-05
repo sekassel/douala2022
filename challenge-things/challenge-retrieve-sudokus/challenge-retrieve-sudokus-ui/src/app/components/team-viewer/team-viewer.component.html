@@ -3,14 +3,21 @@
 
     <div class="searchbar d-flex my-3">
             <!-- <label for="searchInput">Enter team's name</label> -->
-            <input class="form-control" id="searchInput" type="search" placeholder="Search a team by id" class="form-control">
+            <input 
+                class="form-control" 
+                id="searchInput" 
+                type="search" 
+                placeholder="Search a team by id" 
+                class="form-control"
+                [formControl]="toFilter"
+            >
 
             <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button> 
     </div>
 
     <div class="teams py-4">
         <app-team
-            *ngFor="let team of teams" 
+            *ngFor="let team of teams$ | async" 
             [teamName]="team.teamName"
             [creationDate]="team.creationDate"
             [challengeWon]="team.challengeWon"

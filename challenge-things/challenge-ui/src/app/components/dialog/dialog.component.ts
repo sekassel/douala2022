@@ -1,12 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ChallengeData } from 'src/app/services/communication.service';
 
 
 
-export interface DialogData {
-  challengeName: string;
-  date: string;
-}
 
 
 
@@ -21,7 +18,7 @@ export class DialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public datas: DialogData[]) { }
+    @Inject(MAT_DIALOG_DATA) public datas: ChallengeData[]) { }
 
   ngOnInit(): void {
   }
@@ -30,16 +27,23 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onAcceptChallenge(challengeId:number): void {
-    alert(`Hey folks ! Challenge ${challengeId} accepted :) !`);
+  onAcceptChallenge(challenge:ChallengeData): void {
+    challenge.new = false;
+    challenge.accpeted = true;
     // Move to another modal to show available "sudokus"
     // that user can select. 
   }
 
-  onDeclineChallenge(challengeId:number): void {
+  goToTheDetails(challenge:ChallengeData): void {
+    this.dialogRef.close(challenge);
+  }
+
+  onDeclineChallenge(challenge:ChallengeData): void {
     const answer = confirm(`Do you really want to decline this challenge ?`);
-    if(answer)
-      alert(`Challenge ${challengeId} declined :( !`);
+    if(answer){
+      challenge.new = false;
+    }
+      
     // API request: delete the challenge and go back to the referrer
     // (the link the user comes from)
     // Need a query param for that.

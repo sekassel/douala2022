@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "http-server -p $PORT -c-1 ./dist/challenge-ui/",
+    "start:dev": "ng serve -o",
     "start-pwa": "ng build --prod && http-server -p 8080 -c-1 ./dist/challenge-ui/",
     "build": "ng build challenge-ui --base-href ./",
     "watch": "ng build --watch --configuration development",

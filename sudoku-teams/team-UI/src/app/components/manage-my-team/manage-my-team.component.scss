@@ -1,0 +1,123 @@
+html,body{
+  background-color: rgb(230, 230, 230);
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+.story-title {
+  width: 60%;
+}
+table{
+  margin-left: 30%;
+}
+td{
+  font-weight: 900;
+  font-family: 'Nova Cut', cursive;
+}
+
+
+.actions{
+  float: right;
+}
+.actionrow{
+  width: 15%;
+}
+
+i{
+  font-weight: 900;
+  font-size: 18px;
+}
+a{
+  height: 100%;
+  padding-top: 0;
+  padding-right: 0;
+}
+
+.bi-person-x-fill{
+  font-size: 20px;
+  color: red;
+  font-weight: 800;
+}
+
+.bi-person-check-fill{
+  font-size: 20px;
+  color: green;
+  font-weight: 800;
+}
+.bi-dash-circle{
+  font-size: 20px;
+  color: red;
+  font-weight: 800;
+}
+
+.profile-pic-r i
+{
+  float: left;
+  font-size: 20px;
+  color: rgb(239, 132, 248);
+}
+.in{
+  border-bottom: solid 2px rgb(5, 96, 114);
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 23px;
+}
+.in i{
+  color: rgb(5, 96, 114);
+  font-size: 20px;
+}
+.in-b{
+  border-top: solid 2px rgb(5, 96, 114);
+}
+
+.re{
+  border-bottom: solid 2px rgb(184, 3, 127);
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 20px;
+}
+.re i{
+  color: rgb(184, 3, 127);
+  font-size: 23px;
+}
+.re-b{
+  border-top: solid 2px rgb(184, 3, 127);
+}
+
+.me{
+  border-bottom: solid 2px rgb(0, 126, 40);
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 20px;
+}
+.me i{
+  color: rgb(0, 126, 40);
+  font-size: 23px;
+}
+.me-b{
+  border-top: solid 2px rgb(0, 126, 40);
+}
+
+.profile-pic-i i
+{
+  float: left;
+  font-size: 20px;
+  color: rgb(99, 167, 245);
+}
+
+.profile-pic-m i
+{
+  float: left;
+  font-size: 20px;
+  color: rgb(113, 248, 120);
+}
+
+.pageInfo{
+
+  transform: rotate(-90deg);
+  display: inline;
+  position: absolute;
+  top: 280px;
+  left: -30px;
+  color: rgb(0, 0, 0);
+  font-size: 60px;
+  font-weight: 800;
+  font-family: 'Great Vibes', Helvetica, sans-serif;
+  float: left;
+}

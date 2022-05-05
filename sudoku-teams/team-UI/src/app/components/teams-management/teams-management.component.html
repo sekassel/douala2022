@@ -3,15 +3,16 @@
   <head>
 
   </head>
-  <div class="container justify-align-center">
+  <div class="pageInfo"><span>Teams Overview</span></div>
+  <div class="container">
     <div class="story-title">
-      <table class="table table-striped">
+      <table class="table">
         <thead class="">
-            <th scope="col">List of Teams <i class="bi bi-people-fill mx-5"></i></th>
+            <th scope="col" class="mt">List of Teams <i class="bi bi-people-fill"></i></th>
         </thead>
         <tbody>
           <tr *ngFor="let team of myTeams">
-            <td class="text-center b-r">
+            <td class="text-center">
               {{team}}
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
@@ -20,23 +21,23 @@
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i>
+          <tr class="text-center mt-b"><i class="bi bi-caret-down-fill"></i>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="story-title">
-      <table class="table table-striped">
+      <table class="table">
         <thead class="">
-            <th scope="col">Created teams <a id='createMore' class="btn" routerLink="/manageTeams/creating-team"><i class="bi bi-plus-circle mx-3"></i></a></th>
+            <th scope="col" class="ct">Created teams <a id='createMore' class="btn" routerLink="/manageTeams/creating-team"><i class="bi bi-plus-circle"></i></a></th>
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let team of createdTeams">
-            <td>
+            <td class="">
               {{team}}
             </td>
-            <td class="actionrow b-r">
+            <td class="actionrow">
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
                   <i class="bi bi-dash-circle text-danger"></i>
@@ -48,27 +49,27 @@
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
+          <tr class="text-center ct-b"><i class="bi bi-caret-down-fill"></i></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="story-title">
-      <table class="table table-striped">
+    <div class="story-title align-middle">
+      <table class="table align-self-center">
         <thead class="">
-            <th scope="col">Teams List</th>
+            <th scope="col" class="at">Teams List <i class="bi bi-dice-5"></i></th>
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let team of allTeams">
-            <td class="b-r">{{team}}
+            <td class="">{{team}}
               <div class="actions">
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
-                  <i class="bi bi-dice-2 mx-5"></i>
+                  <i class="bi bi-plus"></i>
                 </a>
               </div>
             </td>
           </tr>
-          <tr class="text-center"><i class="bi bi-caret-down-fill"></i></tr>
+          <tr class="text-center at-b"><i class="bi bi-caret-down-fill"></i></tr>
         </tbody>
       </table>
     </div>

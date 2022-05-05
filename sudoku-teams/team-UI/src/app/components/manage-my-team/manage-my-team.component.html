@@ -1,1 +1,80 @@
-<p>manage-my-team works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+  <div class="pageInfo"><span>Manage Your Team</span></div>
+  <div class="container justify-align-center">
+    <div class="story-title">
+      <table class="table">
+        <thead class="">
+            <th scope="col" class="re"><i class="bi bi-box-arrow-in-right"></i> Requests</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td class="text-center ">
+              <div class="profile-pic-r">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              {{request}}
+              <div class="actions">
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-person-check-fill"></i>
+                </a>
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-person-x-fill"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr class="text-center re-b"><i class="bi bi-caret-down-fill"></i>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="story-title">
+      <table class="table">
+        <thead class="">
+            <th scope="col" class="in"><i class="bi bi-hourglass-split"></i>Pending invitations</th>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let inv of invitations">
+            <td class ="">
+              <div class="profile-pic-i">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              {{inv}}
+              <div class="actions">
+                  <i class="bi bi-three-dots"></i>
+              </div>
+            </td>
+          </tr>
+          <tr class="text-center in-b"><i class="bi bi-caret-down-fill"></i></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="story-title">
+      <table class="table">
+        <thead class="">
+            <th scope="col" class="me"><i class="bi bi-people-fill"></i>Team's Members</th>
+        </thead>
+        <tbody>
+          <tr class="text-center" *ngFor="let member of members">
+            <td class="">
+              <div class="profile-pic-m">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              {{member}}
+              <div class="actions">
+                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                  <i class="bi bi-dash-circle"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr class="me-b"></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</html>

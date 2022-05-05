@@ -1,5 +1,6 @@
 
 
+import { assert } from 'console'
 import {Websocket, WebsocketBuilder} from 'websocket-ts';
 
 
@@ -8,6 +9,9 @@ var messageList : string[] = []
 
 describe('the event broker client', () => {
 
+    it('visits the event broker root', () => {
+        cy.visit('http://localhost:3333')
+    })
 
     it('opens a websocket', () => {
 
@@ -16,8 +20,7 @@ describe('the event broker client', () => {
         .onOpen((i, ev) => {
             console.log("yes the socket is opened")
             messageList.push("yes the socket is opened")
-
-            ws?.send("I have just opened you")
+            // ws?.send("I have just opened you")
          })
         .onClose((i, ev) => { console.log("closed") })
         .onError((i, ev) => { console.log("error") })
@@ -28,21 +31,23 @@ describe('the event broker client', () => {
         .onRetry((i, ev) => { console.log("retry") })
         .build();
 
-        console.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
+        console.log(`ws is now open`)
+    })
 
-        cy.wait(1000)
-
-        cy.log(`ws is now: ${JSON.stringify(ws, null, 3)}`)
-
-
-        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+    it('checks for messages', () => {
+        cy.log(JSON.stringify(messageList, null, 3))
+        messageList = []
     })
 
     it('sends a message', ()=>{
         ws?.send('hello can i send you some events?');
         cy.wait(1000)
+    })
 
-        cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+    it('checks for response', () => {
+        cy.log(JSON.stringify(messageList, null, 3))
+        expect(messageList.length).gt(0)
+        messageList = []
     })
 
     it('subsribes for user created', ()=>{
@@ -57,7 +62,7 @@ describe('the event broker client', () => {
     })
 
 
-    it('subsribes for user created', ()=>{
+    it('publish a user created event via websocket', ()=>{
         const msg = {
             topic: 'publish',
             targetTopic: 'user-created',
@@ -70,6 +75,37 @@ describe('the event broker client', () => {
         cy.wait(1000);
 
         cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+    })
+
+    it('publishes a user created event via http.post', () => {
+        const event = {
+            topic: 'publish',
+            targetTopic: 'user-created',
+            payload: {
+                userName: 'Bob',
+                token: '21345621'
+            }
+            }
+        const text = JSON.stringify(event, null, 3)
+        cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
+            // response.body is automatically serialized into JSON
+            expect(response.body).equal('Thank you') // true
+        })
+    })
+
+    it('publishes a team created event via http.post', () => {
+        const event = {
+            topic: 'publish',
+            targetTopic: 'team-created',
+                payload: {
+                    teamName: 'A-Team'
+                }
+            }
+        const text = JSON.stringify(event, null, 3)
+        cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
+            // response.body is automatically serialized into JSON
+            expect(response.body).equal('Thank you') // true
+        })
     })
 
 
