@@ -58,19 +58,16 @@ export class LoginComponent implements OnInit {
 
     }
 
-    console.log(JSON.stringify(params,null,3))
-    this.http.post<any>('http://localhost:3333/publish',params).subscribe(
-      ()=>{
-        // this.toastService.success('Edit Offer','Price has been stored successfully !!');
-        // this.router.navigate(['offer-tasks']);
-      },
-      (error)=>{
-        console.log(JSON.stringify(error))
-      }
-    )
+    try {
 
-    const response = await this.http.get<any[]>('http://localhost:3333/topic?id=user-created');
-    console.log(response)
+          const postResponse = await this.http.post<any>('http://localhost:3333/publish',params)
+          console.log('post request done')
+          const response = await this.http.get<any[]>('http://localhost:3333/topic?id=user-created');
+          console.log(response)
+
+    } catch (error) {
+      console.log(JSON.stringify(error,null,3))
+    }
 
   }
 
