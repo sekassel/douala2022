@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Board, Cell } from '../models/board';
+import {Board, Cell} from '../models/board'
 import {MatDialog} from '@angular/material/dialog';
-import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import {InputDialogComponent} from './input-dialog/input-dialog.component'
 
 @Component({
   selector: 'app-board',
@@ -45,7 +45,7 @@ validate() {
 }
 
 
-private updateConflicts({cell,oldValue, newValue}): void {
+private updateConflicts({cell, oldValue, newValue}:any): void {
   let conflictingCells: Set<Cell>;
   if(oldValue) {
     conflictingCells = this.calculateConflicts(cell, oldValue)
@@ -85,5 +85,3 @@ private calculateConflicts(cell: Cell, value: number): Set<Cell> {
 
 
 }
-
-
