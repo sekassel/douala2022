@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   debugOut=''
   constructor(private http:HttpClient) { }
 
+<<<<<<< HEAD
+ async ngOnInit(){
+=======
   ngOnInit(): void {
     // just put some example data into server
     const params={
@@ -37,9 +40,10 @@ export class LoginComponent implements OnInit {
       answer => console.log('post got answer \n' + JSON.stringify(answer, null, 3)),
       error => console.log('post got an error')
     )
+>>>>>>> df212f21ac164d44cd308d85300ea44e61085362
     this.validNames=['john','joe','carlie','alice'];
     this.validPassword=['1234','5678','91011','131415'];
-    this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(
+    await this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(
       async answer=>{
         this.debugOut=JSON.stringify(answer,null,3)
         console.log(this.debugOut)

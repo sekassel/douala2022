@@ -27,7 +27,7 @@ const eventMap: Map<string, any[]> = new Map();
 // let us have an post endpoint for publishing new events
 app.post('/publish', (req, res) => {
     const jsonMsg = req.body;
-    // console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
+    console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
     handlePublish(jsonMsg)
     res.send({
         msg: 'Thank you'
@@ -39,7 +39,7 @@ app.get('/topic', (req, res) => {
     let id = `${req.query.id}`
 
     let eventList = eventMap.get(id)
-    // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+    console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
     if ( ! eventList) {
         eventList = []
     }
