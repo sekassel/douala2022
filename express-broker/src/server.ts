@@ -131,7 +131,7 @@ function handlePublish(jsonMsg: any) {
         // find interested sockets
         const socketList = topicMap.get(jsonMsg.targetTopic)
         if (socketList == null) {
-            console.log("socket list for this topic is empty")
+            // console.log("socket list for this topic is empty")
             return
         }
 
