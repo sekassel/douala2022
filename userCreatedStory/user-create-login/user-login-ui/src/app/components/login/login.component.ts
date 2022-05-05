@@ -43,5 +43,35 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  connexion(){}
+
+  async connexion(){
+    console.log('help')
+    const params={
+      topic: 'publish',
+      targetTopic: 'user-created',
+      payload: {
+          userName: this.formGroup.get('username')?.value,
+          password: this.formGroup.get('password')?.value,
+          token: '21345621'
+      }
+
+
+    }
+
+    console.log(JSON.stringify(params,null,3))
+    this.http.post<any>('http://localhost:3333/publish',params).subscribe(
+      ()=>{
+        // this.toastService.success('Edit Offer','Price has been stored successfully !!');
+        // this.router.navigate(['offer-tasks']);
+      },
+      (error)=>{
+        console.log(JSON.stringify(error))
+      }
+    )
+
+    const response = await this.http.get<any[]>('http://localhost:3333/topic?id=user-created');
+    console.log(response)
+
+  }
+
 }
