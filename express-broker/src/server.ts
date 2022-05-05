@@ -29,7 +29,9 @@ app.post('/publish', (req, res) => {
     const jsonMsg = req.body;
     console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
     handlePublish(jsonMsg)
-    res.send('Thank you')
+    res.send({
+        msg: 'Thank you'
+    })
 })
 
 
@@ -47,7 +49,9 @@ app.get('/topic', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Douala2022 Event Broker.')
+    res.send({
+        msg: 'Welcome to the Douala2022 Event Broker.'
+    })
 })
 
 
