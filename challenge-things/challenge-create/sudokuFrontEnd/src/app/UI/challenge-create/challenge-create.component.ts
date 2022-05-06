@@ -5,6 +5,8 @@ import {ChallengeCreateService} from "../service/challenge-create.service";
 import {ChallengeCreateModel} from "../../models/challenge-create.model";
 import {map} from "rxjs/operators";
 import {WebsocketService} from "../service/websocket.service";
+import {Subscription} from "rxjs";
+import {EventManager} from "../service/event-manager.service";
 
 @Component({
   selector: 'app-challenge-create',
@@ -15,10 +17,13 @@ export class ChallengeCreateComponent implements OnInit {
 
   challengeCreateModel: ChallengeCreateModel[] = [];
 
+  challengeListSubscription?: Subscription;
+
   constructor(
     private modalService: NgbModal,
     private challengeCreateService: ChallengeCreateService,
-    private ws: WebsocketService
+    private ws: WebsocketService,
+    private eventManager: EventManager,
   ) {
 
     setTimeout(() => { // Important !
@@ -63,6 +68,7 @@ export class ChallengeCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetAllChallenges();
+    this.challengeListSubscription = this.eventManager.subscribe('challengeListModification', () => this.onGetAllChallenges());
   }
 
   onGetAllChallenges(){

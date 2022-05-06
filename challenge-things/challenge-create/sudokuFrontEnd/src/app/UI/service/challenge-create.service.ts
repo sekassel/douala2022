@@ -25,4 +25,9 @@ export class ChallengeCreateService {
     return this.http.get<ChallengeCreateModel[]>(host + "challenge-create?avalable=true");
   }
 
+  createChallenges(challengeCreateModel: ChallengeCreateModel): Observable<ChallengeCreateModel>{
+    let host = environment.host;
+    return this.http.post<ChallengeCreateModel>(host + "challenge-create", challengeCreateModel);
+  }
+
 }
