@@ -165,6 +165,32 @@
         "password": "123"
       },
       "id": 7
+    },
+    {
+      "challengeName": "jkljkl",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 8
+    },
+    {
+      "challengeName": "kfd",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 9
     }
   ],
   "sudokus": [
