@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ChallengeData, CommunicationService } from 'src/app/services/communication.service';
+import {ChallengeCreateModel, ChallengeData, CommunicationService} from 'src/app/services/communication.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 
@@ -17,15 +17,17 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 
 export class DialogComponent implements OnInit {
 
-  challenges: ChallengeData[] = [
-    {
-      challengeName: "name1",
-      date: "21 may 2022",
-      new: true,
-      accpeted: false,
-      sudokus: []
-    }
-  ];
+  // challenges: ChallengeData[] = [
+  //   {
+  //     challengeName: "name1",
+  //     date: "21 may 2022",
+  //     new: true,
+  //     accpeted: false,
+  //     sudokus: []
+  //   }
+  // ];
+
+  challenges: ChallengeCreateModel[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -35,18 +37,18 @@ export class DialogComponent implements OnInit {
       this.ws.events.subscribe(msg => {
         // this.challenges.push(msg);
         const str = `${msg}`;
-  
+
         if(str.startsWith('{')) {
           const json = JSON.parse(str);
           const topic = json.topic;
-  
+
           switch(topic) {
-            case "challenges-listed": 
+            case "challenges-listed":
               // Use of array.filter to get only these team's challenges ?
-              this.challenges = json.payload; 
+              this.challenges = json.payload;
               break;
-            case "challenge-created": 
-              this.challenges.push(json.payload); 
+            case "challenge-created":
+              this.challenges.push(json.payload);
               break;
             case "challenge-sudokus-listed":
               // Use of array.filter to get only its sudokus
@@ -56,7 +58,7 @@ export class DialogComponent implements OnInit {
         }
         console.log("Response from websocket: " + msg);
       });
-  
+
       setTimeout(() => { // Important !
         this.subscribeToEvents();
       },1000);
@@ -75,7 +77,7 @@ export class DialogComponent implements OnInit {
     challenge.new = false;
     challenge.accpeted = true;
     // Move to another modal to show available "sudokus"
-    // that user can select. 
+    // that user can select.
   }
 
   goToTheDetails(challenge:ChallengeData): void {
@@ -87,7 +89,7 @@ export class DialogComponent implements OnInit {
     if(answer){
       challenge.new = false;
     }
-      
+
     // API request: delete the challenge and go back to the referrer
     // (the link the user comes from)
     // Need a query param for that.

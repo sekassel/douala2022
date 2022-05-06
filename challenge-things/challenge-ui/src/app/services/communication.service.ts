@@ -2,6 +2,47 @@ import { Injectable } from '@angular/core';
 import { WebsocketService } from './websocket.service'
 
 
+export interface ChallengeCreateModelI {
+  id: number;
+  challengeName: string;
+  challengeDateCreate: string;
+  selected: boolean;
+  avalable: boolean;
+  users: UsersModel;
+}
+
+export class ChallengeCreateModel implements ChallengeCreateModelI{
+
+  constructor(
+    public id: number,
+    public challengeName: string,
+    public challengeDateCreate: string,
+    public selected: boolean,
+    public avalable: boolean,
+    public users: UsersModel
+  ){}
+
+}
+
+
+export interface UsersModelI {
+  id: number;
+  username: string;
+  country: string;
+  password: string;
+}
+
+export class UsersModel implements UsersModelI{
+  constructor(
+    public id: number,
+    public username: string,
+    public country: string,
+    public password: string
+  ){}
+}
+
+
+
 export interface ChallengeData {
   challengeName: string;
   date?: string;
@@ -30,7 +71,7 @@ export class CommunicationService {
 
   static challenges: any=[];
 
-  
+
   static challenge: ChallengeData = {
     challengeName: "",
     date: "",
@@ -86,7 +127,7 @@ export class CommunicationService {
     }
   ]
 
-  constructor(private ws:WebsocketService) { 
-    
+  constructor(private ws:WebsocketService) {
+
   }
 }
