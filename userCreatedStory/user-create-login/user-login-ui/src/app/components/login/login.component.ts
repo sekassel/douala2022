@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   debugOut=''
   constructor(private http:HttpClient) { }
 
-
   ngOnInit(): void {
     // just put some example data into server
     const params={
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
       answer => console.log('post got answer \n' + JSON.stringify(answer, null, 3)),
       error => console.log('post got an error')
     )
-
     this.validNames=['john','joe','carlie','alice'];
     this.validPassword=['1234','5678','91011','131415'];
     this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(

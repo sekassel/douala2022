@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { Team } from './module/builder/build-team.schema';
 import { BuilderService } from './module/builder/builder. service';
-import team from './module/builder/team';
+
 
 @Injectable()
 export class AppService {
@@ -12,7 +13,9 @@ export class AppService {
   getHello(): string {
     return 'Hello cour!';
   }
-  async handleTeam(team: team) {
+
+  async handleTeam(team: Team ) {
+    console.log('team app =', team)
     return await this.modeBuilderService.store(team)
   }
 }
