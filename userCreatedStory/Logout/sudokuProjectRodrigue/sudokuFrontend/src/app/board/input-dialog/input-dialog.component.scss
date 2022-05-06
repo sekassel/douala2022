@@ -1,0 +1,17 @@
+
+table {
+    // prevent scrollbar in some browsers
+    width: 99.99%;
+    height: 99.99%;
+    
+    & td {
+        &.invisible {
+            visibility: hidden;
+            border: none;
+            cursor:default;
+        }
+    }
+}
+
+
+

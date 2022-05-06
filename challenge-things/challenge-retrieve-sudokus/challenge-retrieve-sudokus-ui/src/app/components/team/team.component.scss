@@ -24,4 +24,19 @@
             background-color: rgba($color: #767d7d, $alpha: .4);
         }
     }
+
+    .challengeRatings {
+        margin: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        .won span {
+            background-color: aquamarine;
+            color: #121212;
+        }
+
+        .lost span {
+            background-color: crimson;
+            color: #fafafa;
+        }
+    }
 }
