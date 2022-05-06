@@ -46,7 +46,7 @@ app.get('/topic', (req, res) => {
         let id = `${req.query.id}`
 
         let eventList = eventMap.get(id)
-        console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+        // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
         if ( ! eventList) {
             eventList = []
         }
@@ -125,9 +125,14 @@ function handlePublish(jsonMsg: any) {
         // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
 
+        if ( ! jsonMsg.time) {
+            jsonMsg.time = new Date().toISOString()
+        }
+
         // store in eventMap
         const answer = {
             topic: tgtTopic,
+            time: jsonMsg.time,
             payload: jsonMsg.payload
         }
         var eventList = eventMap.get(answer.topic);
@@ -141,6 +146,7 @@ function handlePublish(jsonMsg: any) {
 
 
         console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
+        console.log(`    ...  the size is : ${eventList.length}`)
 
 
         // find interested sockets
