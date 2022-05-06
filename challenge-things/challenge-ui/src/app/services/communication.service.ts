@@ -9,6 +9,7 @@ export interface ChallengeCreateModelI {
   selected: boolean;
   avalable: boolean;
   users: UsersModel;
+  sudokus: Sudokus[];
 }
 
 export class ChallengeCreateModel implements ChallengeCreateModelI{

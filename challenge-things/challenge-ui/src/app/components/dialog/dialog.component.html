@@ -11,6 +11,11 @@
                 </div>
             </div>
         </div>
+        <div  *ngFor="let data of challenges">
+            <div class="d-flex align-center justify-content-between" *ngIf="data?.selected">
+                <h2 class="fw-light"><button class="buttonbutton">{{data?.challengeName}}  {{data?.challengeDateCreate}}</button></h2>
+            </div>
+        </div>
 
     </div>
 </div>

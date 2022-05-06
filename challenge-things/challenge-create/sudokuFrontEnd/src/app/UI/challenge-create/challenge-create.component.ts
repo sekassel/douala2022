@@ -3,10 +3,10 @@ import { ChallengeCreateNewComponent } from './challenge-create-new.component';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ChallengeCreateService} from "../service/challenge-create.service";
 import {ChallengeCreateModel} from "../../models/challenge-create.model";
-import {map} from "rxjs/operators";
 import {WebsocketService} from "../service/websocket.service";
 import {Subscription} from "rxjs";
 import {EventManager} from "../service/event-manager.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-challenge-create',
@@ -16,6 +16,7 @@ import {EventManager} from "../service/event-manager.service";
 export class ChallengeCreateComponent implements OnInit {
 
   challengeCreateModel: ChallengeCreateModel[] = [];
+  challengeCreateModelDeclined: ChallengeCreateModel[] = [];
 
   challengeListSubscription?: Subscription;
 
@@ -24,6 +25,7 @@ export class ChallengeCreateComponent implements OnInit {
     private challengeCreateService: ChallengeCreateService,
     private ws: WebsocketService,
     private eventManager: EventManager,
+    private toastr: ToastrService,
   ) {
 
     setTimeout(() => { // Important !
@@ -43,6 +45,10 @@ export class ChallengeCreateComponent implements OnInit {
               this.challengeCreateModel.push(json.payload);
               break;
             case "challenge-sudokus-listed":
+              break;
+            case "challenge-declined":
+              this.challengeCreateModelDeclined.push(json.payload);
+              this.onUpdateChallenge();
               break;
           }
         }
@@ -82,11 +88,38 @@ export class ChallengeCreateComponent implements OnInit {
     )
   }
 
-  // onGetAllChallenges(){
-  //   this.challengeCreateService.getAllChallenges().pipe(
-  //     map((data) => {} )
-  //   )
-  // }
+  onDeletedChallenge(challengeCreateModel: ChallengeCreateModel){
+
+    const answer = confirm(`Do you really want to delete this challenge ?`);
+    if(answer){
+      this.challengeCreateService.deleteChallenges(challengeCreateModel).subscribe(
+        (res: any) => {
+          this.eventManager.broadcast({ name: 'challengeListModification', content: 'challenge deleted' });
+          this.toastr.success("Challenge delete");
+        }, (error) => {
+          this.toastr.error(error);
+        }
+      )
+    }
+
+  }
+
+  onUpdateChallenge(){
+
+    for (let i = 0; this.challengeCreateModelDeclined.length; i++) {
+
+      this.challengeCreateService.updateChallenge(this.challengeCreateModelDeclined[i]).subscribe(
+        (res: any) => {
+          this.eventManager.broadcast({ name: 'challengeListModification', content: 'challenge update' });
+          alert("Success Update");
+        }, (error) => {
+          this.toastr.error(error);
+        }
+      )
+
+    }
+
+  }
 
   openModalCreateChallenge() {
     this.modalService.open(ChallengeCreateNewComponent, { size: 'lg', backdrop: 'static' });
