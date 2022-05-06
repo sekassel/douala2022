@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChallengeData, CommunicationService } from 'src/app/services/communication.service';
+import { ChallengeCreateModel, CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-challenge-details',
@@ -8,7 +8,7 @@ import { ChallengeData, CommunicationService } from 'src/app/services/communicat
 })
 export class ChallengeDetailsComponent implements OnInit {
   
-  dataChallenge: ChallengeData;
+  dataChallenge: ChallengeCreateModel;
 
   constructor(
     private communicationService: CommunicationService
