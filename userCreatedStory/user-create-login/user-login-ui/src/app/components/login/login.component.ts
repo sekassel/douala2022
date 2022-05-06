@@ -68,18 +68,19 @@ export class LoginComponent implements OnInit {
 
         ( async() => {
             console.log('Starting, will sleep for 5 secs now');
-            await delay(3000);
+            await delay(2000);
             this.dialog.closeAll()
             this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
 
             // this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
             await delay(1000);
-            window.location.href = "https://google.com";
+            window.location.href = "https://google.com";//waiting for the landing page
+            this.dialog.closeAll()
         })();
 
         } else {
           ( async() => {
-            await delay(2000);
+            await delay(1000);
             this.dialog.closeAll()
             this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"Password or UserName Incorect"}});
         })();

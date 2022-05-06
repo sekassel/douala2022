@@ -15,7 +15,7 @@ export class AddUserComponent implements OnInit {
 
   constructor(private http:HttpClient, private auth:AuthentificationService, private router:Router, public dialog: MatDialog) { }
 
-
+  valid:boolean=true
   ngOnInit(): void {
   }
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -39,31 +39,52 @@ export class AddUserComponent implements OnInit {
   }
 
   createUser(){
+    this.valid=true
     this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
     const params={
       topic: 'publish',
       targetTopic: 'user-created',
-      time: new Date().toISOString(),
       payload: {
           userName: this.formGroup.get('username')?.value,
           password: this.formGroup.get('password')?.value,
-          email: this.formGroup.get('password')?.value,
+          email: this.formGroup.get('email')?.value,
+          time: new Date().toISOString(),
           token: uuidv4()
       }
     }
-    this.auth.adduser(params).subscribe(
-      answer => {
-        ( async() => {
-          console.log('Starting, will sleep for 5 secs now');
-          await this.delay(3000);
-          this.dialog.closeAll()
-          this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
-          await this.delay(1000);
-          this.dialog.closeAll()
-          this.router.navigate([''])
-      })();
-        console.log('post got answer \n' + JSON.stringify(answer, null, 3))},
-      error => console.log('post got an error')
+
+    this.auth.getUsers().subscribe(
+      answer=>{
+        answer.forEach(element => {
+              if (element.payload.userName==this.formGroup.get('username')?.value) {
+                   this.valid=false
+              }
+          });
+          if(this.valid){
+                this.auth.adduser(params).subscribe(
+                  answer => {
+                    ( async() => {
+                      await this.delay(2000);
+                      this.dialog.closeAll()
+                      this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
+                      await this.delay(2000);
+                      this.dialog.closeAll()
+                      this.router.navigate([''])
+                  })();
+                },
+                  error => console.log('add user failed')
+                )
+          }else{
+            ( async() => {
+              await this.delay(2000);
+              this.dialog.closeAll()
+              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"This user name is already taken"}});
+          })();
+        }
+
+      },
+      err=>{}
     )
+
   }
 }

@@ -5,9 +5,11 @@
       <p>Sudoku</p>
     </div>
     <div class="mcard">
-      <h4 style="text-align: center;">Account recovery
+      <h4 style="text-align: center; font-family: Macondo;">Account recovery
       </h4>
-      <div class="input-group">
+      <h4 style="text-align: center; font-family: Macondo; color: green; transform: translateY(-10px);" *ngIf="valide">Tape The New Password
+      </h4>
+      <div class="input-group" *ngIf="!valide">
         <span style="border-radius: 50%; margin-left: 3px; margin-right: 3px;" class="input-group-text">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -16,7 +18,7 @@
         <input formControlName="username" type="text" placeholder="enter your user name" style="padding: .4em; border-radius: 15px;" class="form-control form-control-default" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
     </div>
-    <div class="mcard">
+    <div class="mcard" *ngIf="!valide">
       <div class="input-group">
         <span class="input-group-text" style="border-radius: 50%; margin-left: 3px; margin-right: 3px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -27,7 +29,7 @@
          type="text" placeholder="enter your email" style="padding: .4em; border-radius: 15px;" class="form-control form-control-default" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
     </div>
-    <div class="mcard" *ngIf="valide">
+    <div class="mcard" *ngIf="valide" style="transform: translateY(-10px)" >
       <div class="input-group">
         <span class="input-group-text" style="border-radius: 50%; margin-left: 3px; margin-right: 3px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="currentColor" class="bi bi-shield-lock" viewBox="0 0 16 16">
@@ -35,7 +37,7 @@
             <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
           </svg>
         </span>
-        <input formControlName="password1" type="password" placeholder="enter your password" style="padding: .4em; border-radius: 15px;" class="form-control form-control-default" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input #password id="password"  type="password" placeholder="enter your password" style="padding: .4em; border-radius: 15px;" class="form-control form-control-default" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
       </div>
     </div>
     <div class="mcard">

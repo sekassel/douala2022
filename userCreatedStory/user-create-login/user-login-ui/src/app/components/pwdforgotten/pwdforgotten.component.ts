@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -12,7 +12,9 @@ import { DialogueComponent } from '../dialogue/dialogue.component';
   styleUrls: ['./pwdforgotten.component.scss']
 })
 export class PwdforgottenComponent implements OnInit {
+  @ViewChild('password')myTestDiv?: ElementRef;
   valide:boolean=false
+  params:any;
   constructor(private http:HttpClient, private auth:AuthentificationService, private router:Router, public dialog: MatDialog) { }
   ngOnInit(): void {
   }
@@ -39,7 +41,6 @@ export class PwdforgottenComponent implements OnInit {
   }
 
   async connexion(){
-    console.log('dfsa')
     if(!this.valide){
       this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
       this.auth.getUsers().subscribe(
@@ -49,6 +50,7 @@ export class PwdforgottenComponent implements OnInit {
           res.forEach(element => {
           if (element.payload.userName==this.formGroup.get('username')?.value && element.payload.email==this.formGroup.get('email')?.value) {
               this.valide=true
+              this.params=element
           }
           });
 
@@ -56,18 +58,16 @@ export class PwdforgottenComponent implements OnInit {
 
           ( async() => {
               console.log('Starting, will sleep for 5 secs now');
-              await this.delay(3000);
+              await this.delay(2000);
               this.dialog.closeAll()
-              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
-
-              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
+              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"},});
               await this.delay(1000);
-              window.location.href = "https://google.com";
+              this.dialog.closeAll()
           })();
 
           } else {
             ( async() => {
-              await this.delay(2000);
+              await this.delay(1000);
               this.dialog.closeAll()
              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"UserName or Email Incorect"}});
           })();
@@ -77,16 +77,26 @@ export class PwdforgottenComponent implements OnInit {
         err=>()=>{console.log(err)}
       )
     }else{
-      this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
-      const params={
-        userName:this.formGroup.get('userName')?.value,
-        password:this.formGroup.get('password2')?.value
-      }
-      this.auth.resetPassword(params).subscribe(
-        answer=>{
 
+      this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
+      const  header={
+        time: this.params.time,
+        topic:'remove',
+        targetTopic: 'user-created'
+      }
+      this.params.payload.password=this.myTestDiv?.nativeElement.value
+      this.auth.resetPassword(this.params,header).subscribe(
+        ans=> {
+          ( async() => {
+            await this.delay(1000);
+            this.dialog.closeAll()
+            this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"},});
+            await this.delay(2000);
+            this.dialog.closeAll()
+            this.router.navigate([''])// waiting for the landing page
+        })();
         },
-        err=>console.log(err)
+        err=>{}
       )
     }
 
