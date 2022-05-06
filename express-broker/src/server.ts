@@ -26,24 +26,34 @@ const eventMap: Map<string, any[]> = new Map();
 
 // let us have an post endpoint for publishing new events
 app.post('/publish', (req, res) => {
-    const jsonMsg = req.body;
-    console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
-    handlePublish(jsonMsg)
-    res.send({
-        msg: 'Thank you'
-    })
+    try {
+        const jsonMsg = req.body;
+        console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
+        handlePublish(jsonMsg)
+        res.send({
+            msg: 'Thank you'
+        })
+    } catch (error) {
+        res.send({
+            err: error
+        })
+    }
 })
 
 
 app.get('/topic', (req, res) => {
-    let id = `${req.query.id}`
+    try {
+        let id = `${req.query.id}`
 
-    let eventList = eventMap.get(id)
-    console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
-    if ( ! eventList) {
-        eventList = []
+        let eventList = eventMap.get(id)
+        console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+        if ( ! eventList) {
+            eventList = []
+        }
+        res.send(JSON.stringify(eventList, null, 3))
+    } catch (error) {
+        res.send({err: error})
     }
-    res.send(JSON.stringify(eventList, null, 3))
 })
 
 
@@ -59,22 +69,23 @@ wss.on('connection', (ws: WebSocket) => {
 
     //connection is up, let's add a simple simple event
     ws.on('message', (message: string) => {
+        try {
+            //log the received message and send it back to the client
+            // console.log('received: %s', message);
 
-        //log the received message and send it back to the client
-        // console.log('received: %s', message);
+            const msg : string = `${message}`
 
-        const msg : string = `${message}`
+            if (msg.startsWith('{')) {
+                const jsonMsg = JSON.parse(msg);
+                handleSubscribe(ws, jsonMsg)
+                handlePublish(jsonMsg)
+                return
+            }
 
-        if (msg.startsWith('{')) {
-            const jsonMsg = JSON.parse(msg);
-
-            handleSubscribe(ws, jsonMsg)
-            handlePublish(jsonMsg)
-            return
+            ws.send(`Hello, you sent -> ${message}`);
+        } catch (error) {
+            ws.send("ws ups " + error)
         }
-
-
-        ws.send(`Hello, you sent -> ${message}`);
     });
 
     //send immediatly a feedback to the incoming connection
@@ -127,7 +138,7 @@ function handlePublish(jsonMsg: any) {
         if ( newevent(answer, eventList)){
             eventList.push(answer)
         }
-        
+
 
         console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
 
@@ -160,20 +171,13 @@ function handlePublish(jsonMsg: any) {
 }
 
  function newevent(event:any, list:any[]){
+     const newEventText = JSON.stringify(event)
      for (const oldEvent of list) {
-         const newPayload = event.payload
-         const oldPayload = oldEvent.payload
-         let valuesAreEqual = true
-        for (const field of newPayload) {
-            if(newPayload[field] != oldPayload[field]){
-                valuesAreEqual = false
-                break
-            }
-            
-        }
-      if(valuesAreEqual)
-        return false
-        
+         const oldEventText = JSON.stringify(oldEvent)
+         if (newEventText === oldEventText) {
+             console.log('this event is already known')
+             return false
+         }
      }
      return true
  }
