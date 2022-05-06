@@ -5,16 +5,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreatingTeamComponent } from './components/creating-team/creating-team.component';
+import { TeamsManagementComponent } from './components/teams-management/teams-management.component';
+import { ManageMyTeamComponent } from './components/manage-my-team/manage-my-team.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatingTeamComponent
+    CreatingTeamComponent,
+    TeamsManagementComponent,
+    ManageMyTeamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

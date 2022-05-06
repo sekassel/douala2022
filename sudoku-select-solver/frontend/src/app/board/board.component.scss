@@ -1,0 +1,27 @@
+
+
+@mixin ifScreen($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+ }
+
+
+:host {
+    margin: auto;
+
+    display: block;
+    width: 90vw;
+    height: 90vw;
+    max-width: 40em;
+    max-height: 40em;
+    @include ifScreen(700) {
+        width: 40em;
+        height: 40em;
+    }
+}
+
+.userValue {
+    font-family: 'Oleo Script', cursive;
+}
+

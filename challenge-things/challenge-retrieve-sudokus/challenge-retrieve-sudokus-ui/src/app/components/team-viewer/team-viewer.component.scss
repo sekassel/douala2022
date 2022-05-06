@@ -1,0 +1,16 @@
+.team-viewer-container {
+    .searchbar {
+        width: 400px;
+        margin: auto;
+    }
+
+    .teams {
+        display: grid;
+        align-content: center;
+        margin-top: 10vh;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+    }
+}

@@ -1,20 +1,37 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SelectedComponent } from './selected/selected.component';
+import { BoardComponent } from './board/board.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputDialogComponent } from './board/input-dialog/input-dialog.component';
+import { MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule}   from '@angular/forms';
+import { OptionsComponent } from './options/options.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectedComponent
+    BoardComponent,
+    InputDialogComponent,
+    OptionsComponent,
+    SuccessDialogComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    FormsModule,
+    MatRadioModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

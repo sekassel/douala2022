@@ -1,0 +1,48 @@
+<div class="team p-2 mx-2">
+    <h3 class="text-center h3">Team {{ teamName }}</h3>
+
+    <div class="dateCr"> 
+        <div class="date-label">Date: </div>
+       <div class="date-value"> {{ creationDate }}</div>
+    </div>
+
+    <div class="challengeRatings">
+        <div class="won">
+            Won: <span class="badge badge-pill">{{ challengeWon }}</span>
+        </div>
+        <div class="lost">
+            Lost: <span class="badge badge-pill">{{ challengeLost}}</span>
+        </div>
+    </div>
+    <button
+        type="button" 
+        [id]="teamName"
+        type="button" 
+        (click)="open(inviteModal)" 
+        class="btn btn-primary mt-auto">
+        Invite
+    </button>
+</div>
+
+<ng-template #inviteModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Invite the team {{ teamName }}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form class="form-group mx-3">
+            <div class="form-group">
+                <label for="inputState">Challenge</label>
+                <select class="custom-select" id="inputState" class="form-control">
+                    <option selected>Select a challenge...</option>
+                    <option
+                        *ngFor="let challenge of challenges"
+                    >{{ challenge.challengeName }} - created by {{ challenge.createdBy }}</option>
+                </select>
+              </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="sendInvitation(inviteModal)">Invite</button>
+    </div>
+</ng-template>
