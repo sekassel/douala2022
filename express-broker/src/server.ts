@@ -40,13 +40,27 @@ app.post('/publish', (req, res) => {
     }
 })
 
+app.post('/remove', (req, res) => {
+    try {
+        const jsonMsg = req.body;
+        console.log('post remove got body ' + JSON.stringify(jsonMsg, null, 3))
+        handleRemove(jsonMsg)
+        res.send({
+            msg: 'Okay'
+        })
+    } catch (error) {
+        res.send({
+            err: error
+        })
+    }
+})
 
 app.get('/topic', (req, res) => {
     try {
         let id = `${req.query.id}`
 
         let eventList = eventMap.get(id)
-        console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+        // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
         if ( ! eventList) {
             eventList = []
         }
@@ -79,6 +93,7 @@ wss.on('connection', (ws: WebSocket) => {
                 const jsonMsg = JSON.parse(msg);
                 handleSubscribe(ws, jsonMsg)
                 handlePublish(jsonMsg)
+                handleRemove(jsonMsg)
                 return
             }
 
@@ -125,9 +140,14 @@ function handlePublish(jsonMsg: any) {
         // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
 
+        if ( ! jsonMsg.time) {
+            jsonMsg.time = new Date().toISOString()
+        }
+
         // store in eventMap
         const answer = {
             topic: tgtTopic,
+            time: jsonMsg.time,
             payload: jsonMsg.payload
         }
         var eventList = eventMap.get(answer.topic);
@@ -135,12 +155,13 @@ function handlePublish(jsonMsg: any) {
             eventList = []
             eventMap.set(answer.topic, eventList)
         }
-        if ( newevent(answer, eventList)){
+        if ( newEvent(answer, eventList)){
             eventList.push(answer)
         }
 
 
         console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
+        console.log(`    ...  the size is : ${eventList.length}`)
 
 
         // find interested sockets
@@ -170,7 +191,55 @@ function handlePublish(jsonMsg: any) {
     }
 }
 
- function newevent(event:any, list:any[]){
+function handleRemove(jsonMsg: any) {
+    if (jsonMsg.topic == 'remove') {
+        // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
+        const tgtTopic = jsonMsg.targetTopic;
+
+        // remove from eventMap
+        var eventList = eventMap.get(tgtTopic);
+        if ( ! eventList) {
+            return
+        }
+
+        var i = 0
+        for (const e of eventList) {
+            if (e.time === jsonMsg.time) {
+                eventList.splice(i, 1)
+                console.log('list after removal ' + JSON.stringify(eventList))
+            }
+            i++;
+        }
+
+        // find interested sockets
+        const socketList = topicMap.get(jsonMsg.targetTopic)
+        if (socketList == null) {
+            // console.log("socket list for this topic is empty")
+            return
+        }
+
+        // inform subscribers
+        const text = JSON.stringify(jsonMsg, null, 3)
+
+        // send to subscribers
+        for (const s of socketList) {
+            s.send(text, (err) => {
+                if (err) {
+                    const errString = JSON.stringify(err)
+                    if (errString != '{}') {
+                        console.log(`send error ` + JSON.stringify(err))
+                    }
+                }
+            })
+            console.log('have send answer to some service');
+        }
+
+        return
+    }
+}
+
+
+function newEvent(event:any, list:any[]){
      const newEventText = JSON.stringify(event)
      for (const oldEvent of list) {
          const oldEventText = JSON.stringify(oldEvent)
