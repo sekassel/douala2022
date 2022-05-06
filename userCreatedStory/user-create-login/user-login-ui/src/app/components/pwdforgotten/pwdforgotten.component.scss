@@ -1,0 +1,106 @@
+@font-face {
+  font-family: Macondo;
+  src: url("./../../../assets/fonts/MacondoSwashCaps-Regular.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: Handlee;
+  src: url("./../../../assets/fonts/Handlee-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: Macondo;
+  margin: 0;
+  padding: 0;
+}
+
+.mcontainer {
+  position: absolute;
+  background-color: rgb(242, 242, 242);
+  min-width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  max-width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+
+  .formcard {
+    padding: 1.5em;
+    box-shadow: -1px 2px 20px -5px rgba(242, 241, 241, 0.64);
+    -webkit-box-shadow: -1px 2px 20px -5px rgba(255, 255, 255, 0.64);
+    -moz-box-shadow: -1px 2px 20px -5px rgba(240, 240, 240, 0.64);
+    border-radius: 10px;
+    max-height: 75%;
+    min-height: 30%;
+    max-width: 24em;
+    min-width: 24em;
+
+    display: grid;
+    flex-direction: column;
+    margin: auto;
+
+
+
+    .mcard:nth-child(1) {
+      min-height: 11.6em;
+      max-height: 11.6em;
+      margin-bottom: 20px;
+
+      img {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 95%;
+        max-height: 95%;
+        transform: scale(120%);
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+
+    .mcard:nth-child(2) {
+      min-height: 5.1em;
+      max-height: 5.1em;
+      margin-bottom: 10px;
+    }
+
+    .mcard {
+      min-height: 2.6em;
+      max-height: 2.6em;
+      margin-bottom: 10px;
+      display: grid;
+
+      input {
+        text-align: center;
+      }
+    }
+
+    img {
+      max-height: 5em;
+    }
+
+    .mybtn1 {
+      justify-self: center;
+      width: 70%;
+      margin-left: 10%;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2em;
+      box-shadow: -1px 2px 20px -5px rgba(160, 149, 149, 0.64);
+      -webkit-box-shadow: -1px 2px 20px -5px rgba(178, 166, 166, 0.64);
+      -moz-box-shadow: -1px 2px 20px -5px rgba(161, 149, 149, 0.64);
+
+      svg {
+        width: 1em;
+      }
+    }
+  }
+
+  .footer {
+    font-family: Handlee;
+    text-align: center;
+  }
+}
