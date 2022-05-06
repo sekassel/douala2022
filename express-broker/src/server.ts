@@ -57,8 +57,9 @@ app.post('/remove', (req, res) => {
 
 app.get('/topic', (req, res) => {
     try {
+        
         let id = `${req.query.id}`
-
+        
         let eventList = eventMap.get(id)
         // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
         if ( ! eventList) {
@@ -70,6 +71,21 @@ app.get('/topic', (req, res) => {
     }
 })
 
+
+app.get('/topicM', (req, res) => {
+    try {
+        let eventList:any[]=[]
+        let id = `${req.query.id}`
+        for(let [key,value] of eventMap ){
+            eventList.push(value)
+        }
+            
+        console.log(eventList)
+        res.send(JSON.stringify(eventList, null, 3))
+    } catch (error) {
+        res.send({err: error})
+    }
+})
 
 
 app.get('/', (req, res) => {
@@ -94,6 +110,7 @@ wss.on('connection', (ws: WebSocket) => {
                 handleSubscribe(ws, jsonMsg)
                 handlePublish(jsonMsg)
                 handleRemove(jsonMsg)
+                handleMonitor(ws, jsonMsg)
                 return
             }
 
@@ -115,6 +132,7 @@ server.listen(process.env.PORT || 3333, () => {
 
 
 function handleSubscribe(ws: WebSocket, jsonMsg: any) {
+
     if (jsonMsg.topic == 'subscribe') {
         // console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
@@ -132,6 +150,20 @@ function handleSubscribe(ws: WebSocket, jsonMsg: any) {
         ws.send(text)
         // console.log('reply to subscribe has been  \n' + text);
         return
+    }
+}
+
+function handleMonitor(ws: WebSocket, jsonMsg:any) {
+    if(jsonMsg.topic == 'monitor') {
+        const object = {};
+
+        eventMap.forEach((value, key) => {
+            const keys = key.split('.'),
+                last:any = keys.pop();
+            keys.reduce((r:any, a:any) => r[a] = r[a] || {}, object)[last] = value;
+        });
+
+        ws.send(JSON.stringify(object), ()=>{})
     }
 }
 
@@ -186,6 +218,19 @@ function handlePublish(jsonMsg: any) {
             })
             console.log('have send answer to some service');
         }
+
+        // Send to the monitor
+        // const monitorSocket = topicMap.get('any');
+        // if(monitorSocket) {
+        //     monitorSocket[0].send(text, (err) => {
+        //         if (err) {
+        //             const errString = JSON.stringify(err)
+        //             if (errString != '{}') {
+        //                 console.log(`send error ` + JSON.stringify(err))
+        //             }
+        //         }
+        //     });
+        // }
 
         return
     }
