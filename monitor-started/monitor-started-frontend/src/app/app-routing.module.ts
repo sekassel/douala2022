@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChallengeCreateComponent } from './UI/challenge-create/challenge-create.component';
 
-const routes: Routes = [
-  { path: '', component: ChallengeCreateComponent },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
