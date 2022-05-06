@@ -86,7 +86,49 @@
         "username": "duncan",
         "country": "australia",
         "password": "123"
-      }
+      },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ]
     },
     {
       "id": 2,
@@ -99,7 +141,49 @@
         "username": "sarah",
         "country": "england",
         "password": "123"
-      }
+      },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ]
     },
     {
       "id": 3,
@@ -112,7 +196,49 @@
         "username": "admin",
         "country": "usa",
         "password": "123"
-      }
+      },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ]
     },
     {
       "id": 4,
@@ -125,7 +251,49 @@
         "username": "test2",
         "country": "usa",
         "password": "123"
-      }
+      },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ]
     },
     {
       "challengeName": "New",
@@ -138,6 +306,48 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 5
     },
     {
@@ -151,6 +361,48 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 6
     },
     {
@@ -164,6 +416,48 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 7
     },
     {
@@ -177,9 +471,49 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 8
-<<<<<<< HEAD
-=======
     },
     {
       "challengeName": "kfd",
@@ -192,6 +526,48 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 9
     },
     {
@@ -205,30 +581,91 @@
         "country": "australia",
         "password": "123"
       },
+      "sudokus": [
+        {
+          "id": 1,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 2,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 3,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        },
+        {
+          "id": 4,
+          "name": "duncan",
+          "niveau": "medium",
+          "modifie": false,
+          "value": [],
+          "solution": 0,
+          "isPressed": true,
+          "player": ""
+        }
+      ],
       "id": 10
->>>>>>> b2d11642753ec1d731c47ef687cbf7c3210f9bb8
     }
   ],
   "sudokus": [
     {
       "id": 1,
-      "challengeName": "duncan",
-      "country": "australia"
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
     },
     {
       "id": 2,
-      "challengeName": "sarah",
-      "country": "england"
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
     },
     {
       "id": 3,
-      "challengeName": "admin",
-      "country": "usa"
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
     },
     {
       "id": 4,
-      "challengeName": "test2",
-      "country": "usa"
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
     }
   ]
 }
