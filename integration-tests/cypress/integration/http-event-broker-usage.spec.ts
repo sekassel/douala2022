@@ -49,7 +49,35 @@ describe("the event broker" , () => {
         cy.request('GET', 'http://localhost:3333/topic?id=user-created')
         .then((response) => {
             const list : any[] = JSON.parse(response.body)
-            messageList.push(list)
+            messageList.push(response.body)
+            messageList.push('this size of the list is ' + list.length)
+            console.log('get response.body is ' + response.body)
+        })
+    })
+
+    it('logs the response', () => {
+        cy.log(messageList)
+        messageList = []
+    })
+
+    it('removes some old event from the list', () => {
+        const event3 = {
+            topic: 'remove',
+            time: 'Wednesday 09:15',
+            targetTopic: 'user-created',
+        }
+
+        cy.request('POST', 'http://localhost:3333/remove', event3).then((response) => {
+            // response.body is automatically serialized into JSON
+            expect(JSON.stringify(response.body)).equal(JSON.stringify({ msg: 'Okay'}))
+        })
+    })
+
+    it('delivers lists of events if asked via http.get', () => {
+        cy.request('GET', 'http://localhost:3333/topic?id=user-created')
+        .then((response) => {
+            const list : any[] = JSON.parse(response.body)
+            messageList.push(response.body)
             messageList.push('this size of the list is ' + list.length)
             console.log('get response.body is ' + response.body)
         })
