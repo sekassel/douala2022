@@ -19,7 +19,8 @@ export class ChallengeCreateModel implements ChallengeCreateModelI{
     public challengeDateCreate: string,
     public selected: boolean,
     public avalable: boolean,
-    public users: UsersModel
+    public users: UsersModel,
+    public sudokus: Sudokus[]
   ){}
 
 }
@@ -41,21 +42,20 @@ export class UsersModel implements UsersModelI{
   ){}
 }
 
-
-
-export interface ChallengeData {
-  challengeName: string;
-  date?: string;
-  new?: boolean;
-  accpeted?: boolean;
-  sudokus?: SudokuSchema[];
+export class Sudokus{
+  constructor(
+    public id: number,
+    public name: string,
+    public niveau: string,
+    public modifie: boolean,
+    public value: number[],
+    public solution: number,
+    public isPressed: boolean,
+    public player: string
+  ){}
 }
 
-export interface SudokuSchema{
-  name: string;
-  player: string;
-  status: string;
-}
+
 
 export interface EventDTO {
   topic:string;
@@ -69,63 +69,11 @@ export interface EventDTO {
 
 export class CommunicationService {
 
-  static challenges: any=[];
 
 
-  static challenge: ChallengeData = {
-    challengeName: "",
-    date: "",
-    new: false,
-    accpeted: false,
-    sudokus: []
-  };
+  static challenge: ChallengeCreateModel;
 
-  sudokuData = [
-    {
-      name: "sudoku 1",
-      player: "Eric",
-      status: ""
-    },
-    {
-      name: "sudoku 2",
-      player: "Albert",
-      status: ""
-    },
-    {
-      name: "sudoku 3",
-      player: "Franck",
-      status: ""
-    },
-    {
-      name: "sudoku 4",
-      player: "Armelle",
-      status: ""
-    }
-  ]
-
-  dataSend = [
-    {
-      challengeName: "name1",
-      date: "21 may 2022",
-      new: true,
-      accpeted: false,
-      sudokus: this.sudokuData
-    },
-    {
-      challengeName: "name2",
-      date: "21 may 2022",
-      new: true,
-      accpeted: false,
-      sudokus: this.sudokuData
-    },
-    {
-      challengeName: "name3",
-      date: "21 may 2022",
-      new: true,
-      accpeted: false,
-      sudokus: this.sudokuData
-    }
-  ]
+ 
 
   constructor(private ws:WebsocketService) {
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ChallengeCreateModel, ChallengeData, CommunicationService} from 'src/app/services/communication.service';
+import {ChallengeCreateModel, CommunicationService} from 'src/app/services/communication.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 
 
@@ -66,28 +66,35 @@ export class DialogComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.challenges = CommunicationService.challenges;
   }
+
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onAcceptChallenge(challenge:ChallengeData): void {
-    challenge.new = false;
-    challenge.accpeted = true;
+  onAcceptChallenge(challenge:ChallengeCreateModel): void {
+    this.ws.events.next({
+      topic: "publish",
+      targetTopic: "challenge-accepted",
+      payload: challenge
+    })
     // Move to another modal to show available "sudokus"
     // that user can select.
   }
 
-  goToTheDetails(challenge:ChallengeData): void {
+  goToTheDetails(challenge:ChallengeCreateModel): void {
     this.dialogRef.close(challenge);
   }
 
-  onDeclineChallenge(challenge:ChallengeData): void {
+  onDeclineChallenge(challenge:ChallengeCreateModel): void {
     const answer = confirm(`Do you really want to decline this challenge ?`);
     if(answer){
-      challenge.new = false;
+      this.ws.events.next({
+        topic: "publish",
+        targetTopic: "challenge-declined",
+        payload: challenge
+      })
     }
 
     // API request: delete the challenge and go back to the referrer
