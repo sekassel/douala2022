@@ -1,0 +1,11 @@
+<label mat-dialog-title id="example-radio-group-label">Select Difficulty</label>
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="selectedDifficulty">
+  <mat-radio-button class="example-radio-button" *ngFor="let difficulty of difficulties" [value]="difficulty">
+    {{difficulty}}
+  </mat-radio-button>
+</mat-radio-group>
+<button mat-button (click)="onNoClick()">Cancel</button>
+<button mat-button [mat-dialog-close]="selectedDifficulty" color="primary" cdkFocusInitial>Ok</button>

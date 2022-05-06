@@ -12,12 +12,12 @@
                 [formControl]="toFilter"
             >
 
-            <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button> 
+            <button class="btn btn-primary" type="button"><i class="bi bi-search"></i></button> 
     </div>
 
     <div class="teams py-4">
         <app-team
-            *ngFor="let team of teams$ | async" 
+            *ngFor="let team of teams$ | async; let i = index" 
             [teamName]="team.teamName"
             [creationDate]="team.creationDate"
             [challengeWon]="team.challengeWon"
