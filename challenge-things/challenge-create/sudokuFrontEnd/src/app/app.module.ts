@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ChallengeCreateComponent } from './UI/challenge-create/challenge-create.component';
 import { ChallengeCreateNewComponent } from './UI/challenge-create/challenge-create-new.component';
 import { HttpClientModule } from '@angular/common/http';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
