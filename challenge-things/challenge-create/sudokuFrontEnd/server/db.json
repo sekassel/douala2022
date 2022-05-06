@@ -186,61 +186,6 @@
       ]
     },
     {
-      "id": 3,
-      "challengeName": "admin",
-      "challengeDateCreate": "02/04/2022",
-      "selected": false,
-      "avalable": true,
-      "users": {
-        "id": 3,
-        "username": "admin",
-        "country": "usa",
-        "password": "123"
-      },
-      "sudokus": [
-        {
-          "id": 1,
-          "name": "duncan",
-          "niveau": "medium",
-          "modifie": false,
-          "value": [],
-          "solution": 0,
-          "isPressed": true,
-          "player": ""
-        },
-        {
-          "id": 2,
-          "name": "duncan",
-          "niveau": "medium",
-          "modifie": false,
-          "value": [],
-          "solution": 0,
-          "isPressed": true,
-          "player": ""
-        },
-        {
-          "id": 3,
-          "name": "duncan",
-          "niveau": "medium",
-          "modifie": false,
-          "value": [],
-          "solution": 0,
-          "isPressed": true,
-          "player": ""
-        },
-        {
-          "id": 4,
-          "name": "duncan",
-          "niveau": "medium",
-          "modifie": false,
-          "value": [],
-          "solution": 0,
-          "isPressed": true,
-          "player": ""
-        }
-      ]
-    },
-    {
       "id": 4,
       "challengeName": "test2",
       "challengeDateCreate": "02/04/2022",
@@ -624,6 +569,19 @@
         }
       ],
       "id": 10
+    },
+    {
+      "challengeName": "challenge1",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 11
     }
   ],
   "sudokus": [
