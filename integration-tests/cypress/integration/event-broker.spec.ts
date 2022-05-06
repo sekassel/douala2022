@@ -1,6 +1,7 @@
 
 
 import {Websocket, WebsocketBuilder} from 'websocket-ts';
+const date = new Date();
 
 
 var ws : Websocket | null = null
@@ -47,13 +48,14 @@ describe('the event broker client', () => {
     })
 
 
-    it('subsribes for user created', ()=>{
+    it('publish for user created', ()=>{
         const msg = {
             topic: 'publish',
             targetTopic: 'user-created',
             payload: {
                 userName: 'Alice',
-                token: '12345621'
+                token: '12345621',
+                time: date.toISOString()
             }
         }
         ws?.send(JSON.stringify(msg, null, 3));

@@ -51,7 +51,15 @@ wss.on('connection', (ws: WebSocket) => {
                     return
                 }
 
-                // send the message
+                for (const s of socketList){
+                    s.send(`Hello, broadcast message -> ${message}`)
+                }
+                
+                
+                    // send the message
+                    // ws.send(`Hello, broadcast message -> ${message}`);
+                
+                
 
                 return
             }
