@@ -1,51 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { json } from 'express'
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AuthentificationService } from './../../authentification.service';
+import { v4 as uuidv4 } from 'uuid';
+import { DialogueComponent } from '../dialogue/dialogue.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  validNames:string[]=[];
-  validPassword:string[]=[]
   debugOut=''
-  constructor(private http:HttpClient) { }
+  valide:boolean=false
+  constructor(private http:HttpClient, private auth:AuthentificationService, private router:Router, public dialog: MatDialog) { }
 
+
+  openDialog() {
+    this.dialog.open(DialogueComponent,{ disableClose: true });
+  }
   ngOnInit(): void {
-    // just put some example data into server
-    const params={
-      topic: 'publish',
-      targetTopic: 'user-created',
-      payload: {
-          userName: 'Rene',
-          password: 'secret',
-          token: '21345621'
-      }
-    }
-    console.log('trying to push Albert to user created');
-
-    this.http.get<string>('http://localhost:3333')
-    .subscribe(
-      answer => console.log('get got an answer'),
-      error => console.log('get got an error')
-    )
-
-    this.http.post('http://localhost:3333/publish', params)
-    .subscribe(
-      answer => console.log('post got answer \n' + JSON.stringify(answer, null, 3)),
-      error => console.log('post got an error')
-    )
-    this.validNames=['john','joe','carlie','alice'];
-    this.validPassword=['1234','5678','91011','131415'];
-    this.http.get<any[]>('http://localhost:3333/topic?id=user-created').subscribe(
-       answer=>{
-        this.debugOut=JSON.stringify(answer,null,3)
-        console.log(this.debugOut)
-      },
-      error=>this.debugOut= JSON.stringify(error,null,3)
-    );
+    // just put some example data into serve
   }
 
   formGroup = new FormGroup({
@@ -55,47 +31,63 @@ export class LoginComponent implements OnInit {
 
   usernameValidator(){
     return (control: AbstractControl): ValidationErrors | null=>{
-      const forbidden =(control.value.length<0) ||(this.validNames.indexOf(control.value)<0);
-      return forbidden ?{forbiddenName: {value: control.value}}:null
+      const forbidden =(control.value.length<0);
+      return forbidden ?{forbiddenUserName: {value: control.value}}:null
     };
   }
+
+
 
   passwordValidator(){
     return (control: AbstractControl): ValidationErrors | null=>{
-      const forbidden =(control.value.length<0) || (this.validPassword.indexOf(control.value)<0);
-      return forbidden ?{forbiddenNumber: {value: control.value}}:null
+      const forbidden =(control.value.length<0) ;
+      return forbidden ?{forbiddenPassword: {value: control.value}}:null
     };
   }
 
 
+
+
+
+
   async connexion(){
-    console.log('connexion started')
-    const params={
-      topic: 'publish',
-      targetTopic: 'user-created',
-      payload: {
-          userName: this.formGroup.get('username')?.value,
-          password: this.formGroup.get('password')?.value,
-          token: '21345621'
-      }
+    this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
+    this.auth.getUsers().subscribe(
+      res=>{
+
+        console.log('got an answer');
+        res.forEach(element => {
+        if (element.payload.userName==this.formGroup.get('username')?.value && element.payload.password==this.formGroup.get('password')?.value) {
+            this.valide=true
+        }
+        });
+        function delay(milliseconds : number) {
+          return new Promise(resolve => setTimeout( resolve, milliseconds));
+        }
+        if (this.valide) {
+
+        ( async() => {
+            console.log('Starting, will sleep for 5 secs now');
+            await delay(3000);
+            this.dialog.closeAll()
+            this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
+
+            // this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
+            await delay(1000);
+            window.location.href = "https://google.com";
+        })();
+
+        } else {
+          ( async() => {
+            await delay(2000);
+            this.dialog.closeAll()
+            this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"Password or UserName Incorect"}});
+        })();
+        }
     }
-
-    try {
-      this.http.post<any>('http://localhost:3333/publish',params)
-      .subscribe(
-        answer => console.log('post publish got an answer' + JSON.stringify(answer, null, 3)),
-        error => console.log('post publish got an error')
-      )
-
-      this.http.get<any[]>('http://localhost:3333/topic?id=user-created')
-      .subscribe(
-        answer => console.log('get topic got an answer' + JSON.stringify(answer, null, 3)),
-        error => console.log('get topic got an error')
-      )
-
-    } catch (error) {
-      console.log(JSON.stringify(error,null,3))
-    }
+        ,
+      err=>()=>{console.log(err)}
+    )
 
   }
 
