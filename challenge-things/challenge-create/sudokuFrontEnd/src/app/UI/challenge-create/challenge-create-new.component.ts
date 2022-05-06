@@ -62,9 +62,9 @@ export class ChallengeCreateNewComponent implements OnInit {
 
     this.challengeCreateService.createChallenges(this.challengeCreate).subscribe(
       (res: any) => {
+        this.clear();
         this.eventManager.broadcast({ name: 'challengeListModification', content: 'challenge create' });
-          this.toastr.success(res.body.message);
-          this.clear();
+        this.toastr.success("New Challenge create");
       }, (error) => {
         this.toastr.error(error);
       }
