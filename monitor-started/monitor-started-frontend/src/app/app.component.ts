@@ -8,6 +8,7 @@ import { WebsocketService } from './services/websocket.service';
 })
 export class AppComponent {
   title = 'monitor-started-frontend';
+  eventsList = ['publish', 'subscribe', 'users created'];
 
   events:any[] = [];
   users:any[] = [];
@@ -21,12 +22,13 @@ export class AppComponent {
         const topic = json.topic;
 
         switch(topic) {
-          case "events-listed": 
+          case "users": 
             // Use of array.filter to get only these team's events ?
             this.events = json.payload; 
             break;
           case "challenge-created": 
             this.events.push(json.payload); 
+            console.log(this.events);
             break;
           case "challenge-sudokus-listed":
             // Use of array.filter to get only its sudokus
@@ -38,8 +40,34 @@ export class AppComponent {
     });
 
     setTimeout(() => { // Important !
-      // this.subscribeToEvents();
+      this.subscribeToEvents();
     },1000);
+
+    // ws.connect('http://localhost:3333/');
   }
   
+  subscribeToEvents() {
+    /**
+     * We need to subscribe to those events:
+     * 'challenges-list'
+     * 'challenge-created' ?
+     * 'challenge-accepted' ?
+     * 'challenge-declined' ?
+     * 'challenge-sudokus-list'
+     */
+    this.ws.events.next({
+      topic: 'subscribe',
+      targetTopic: 'any'
+    });
+
+    // this.ws.events.next({
+    //   topic: 'subscribe',
+    //   targetTopic: 'challenge-created'
+    // });
+
+    // this.ws.events.next({
+    //   topic: 'subscribe',
+    //   targetTopic: 'challenge-sudokus-list'
+    // });
+  }
 }
