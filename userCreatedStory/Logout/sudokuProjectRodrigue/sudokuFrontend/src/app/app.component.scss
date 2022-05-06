@@ -1,0 +1,17 @@
+
+
+.horizontal-flex {
+    
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+
+    button{
+        margin: 0 0.5em;
+    }
+}
+
+
+.locked {
+    pointer-events: none;
+}
