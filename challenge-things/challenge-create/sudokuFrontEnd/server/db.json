@@ -165,6 +165,45 @@
         "password": "123"
       },
       "id": 7
+    },
+    {
+      "challengeName": "challenge 3",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 8
+    },
+    {
+      "challengeName": "challenge 4",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 9
+    },
+    {
+      "challengeName": "challenge 4",
+      "challengeDateCreate": "06/05/2022",
+      "selected": true,
+      "avalable": true,
+      "users": {
+        "id": 1,
+        "username": "duncan",
+        "country": "australia",
+        "password": "123"
+      },
+      "id": 10
     }
   ],
   "sudokus": [
