@@ -30,4 +30,19 @@ export class ChallengeCreateService {
     return this.http.post<ChallengeCreateModel>(host + "challenge-create", challengeCreateModel);
   }
 
+  deleteChallenges(challengeCreateModel: ChallengeCreateModel): Observable<void>{
+    let host = environment.host;
+    return this.http.delete<void>(host + "challenge-create/" + challengeCreateModel.id);
+  }
+
+  getChallenge(id: number | null): Observable<ChallengeCreateModel> {
+    let host = environment.host;
+    return this.http.get<ChallengeCreateModel>(host + "challenge-create/" + id);
+  }
+
+  updateChallenge(challengeCreateModel: ChallengeCreateModel): Observable<ChallengeCreateModel> {
+    let host = environment.host;
+    return this.http.put<ChallengeCreateModel>(host + "challenge-create/" + challengeCreateModel.id, challengeCreateModel);
+  }
+
 }
