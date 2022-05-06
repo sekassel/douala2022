@@ -3,7 +3,15 @@ let messageList = []
 
 describe("the event broker" , () => {
     it("is up and running", () => {
-        cy.visit("http://localhost:3333")
+        cy.request('GET', "http://localhost:3333")
+        .then((res) => {
+            messageList.push(res.body)
+        })
+    })
+
+    it('gets a response', () => {
+        cy.log(messageList)
+        messageList = []
     })
 
     it("accepts events via http.post", () => {
@@ -18,7 +26,7 @@ describe("the event broker" , () => {
         const text = JSON.stringify(event, null, 3)
         cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
             // response.body is automatically serialized into JSON
-            expect(response.body).equal('Thank you') // true
+            expect(JSON.stringify(response.body)).equal(JSON.stringify({ msg: 'Thank you'}))
         })
 
         // one more user
@@ -27,7 +35,7 @@ describe("the event broker" , () => {
 
         cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
             // response.body is automatically serialized into JSON
-            expect(response.body).equal('Thank you') // true
+            expect(JSON.stringify(response.body)).equal(JSON.stringify({ msg: 'Thank you'}))
         })
     })
 
