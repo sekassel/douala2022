@@ -1,0 +1,15 @@
+
+<table>
+    <ng-container *ngFor="let row of board">
+        <tr>
+            <ng-container *ngFor="let cell of row">
+                <td [ngClass]="cell" [class.conflict]="cell.numberOfConflicts>0" (click)="cellClicked(cell)">
+                    <span *ngIf="cell.preset; else notPreset">{{cell.value}}</span>
+                    <ng-template #notPreset>
+                        <span class="userValue" *ngIf="cell.value">{{cell.value}}</span>
+                    </ng-template>
+                </td>
+            </ng-container>
+        </tr>
+    </ng-container>
+</table>
