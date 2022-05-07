@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import Team from './module/builder/team';
 
@@ -12,14 +12,18 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('new')
-<<<<<<< HEAD
-  async postTeam(@Body() team:Team ){
-=======
-  async postTeam(@Body() team: Team){
->>>>>>> 811d1ee7a13e09b1827b5a918365b4260a08fb37
-    try{
 
+  @Get('query/')
+  async getQuery(): Promise<any>{
+   // this.logger.log('controller key',key)
+    const result = await this.appService.getList();
+    this.logger.log('list key',result) 
+    return result;
+  }
+
+  @Post('new')
+  async postTeam(@Body() team: Team){
+    try{
       const c = await this.appService.handleTeam(team);
       return c; 
     }catch(error){

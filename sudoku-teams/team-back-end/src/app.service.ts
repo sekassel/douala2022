@@ -15,7 +15,16 @@ export class AppService {
   }
 
   async handleTeam(team: Team ) {
-    console.log('team app =', team)
-    return await this.modeBuilderService.store(team)
+     const c= await this.modeBuilderService.store(team)
+     //console.log("app c=",c)
+     return c
   }
+
+  async getList(){
+    //console.log('app use', use)
+    const l= await this.modeBuilderService.getTeams()
+    //console.log('app list', l)
+    return l
+  }
+
 }
