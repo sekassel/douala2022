@@ -42,7 +42,7 @@
                 <a id='handle-invitations' class="btn" routerLink="/manageTeams">
                   <i class="bi bi-dash-circle text-danger"></i>
                 </a>
-                <a id='' class="btn" routerLink="/manageTeams/managemyteam">
+                <a id='' class="btn" [routerLink]="['/manageTeams/managemyteam', team]">
                   <i class="bi bi-bell-fill"></i>
                   <span class="notif-number align-top">10</span>
                 </a>
