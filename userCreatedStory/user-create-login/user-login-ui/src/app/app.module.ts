@@ -11,12 +11,15 @@ import { environment } from '../environments/environment';
 import { PwdforgottenComponent } from './components/pwdforgotten/pwdforgotten.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogueComponent } from './components/dialogue/dialogue.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AddUserComponent,
-    PwdforgottenComponent
+    PwdforgottenComponent,
+    DialogueComponent,
   ],
   imports: [
     FormsModule,
@@ -25,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

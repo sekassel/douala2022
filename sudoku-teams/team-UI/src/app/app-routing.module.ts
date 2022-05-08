@@ -8,7 +8,7 @@ import { TeamsManagementComponent } from './components/teams-management/teams-ma
 const routes: Routes = [
   {path: 'manageTeams', component: TeamsManagementComponent},
   {path: 'manageTeams/creating-team',component:CreatingTeamComponent },
-  {path: 'manageTeams/managemyteam', component:ManageMyTeamComponent},
+  {path: 'manageTeams/managemyteam/:team', component:ManageMyTeamComponent},
 ]
 
 @NgModule({
