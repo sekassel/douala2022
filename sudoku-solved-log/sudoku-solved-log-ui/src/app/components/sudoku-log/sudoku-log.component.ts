@@ -11,71 +11,91 @@ export class SudokuLogComponent implements OnInit {
 
 
   challengeStarter = {
-    "challengeId": "a4deb59f-7b25-4077-b645-0c7636be408d",
-    "challengeName": "Tribalog",
+    "challengeId": "9a152c01-5805-4489-a8fb-a5ee45ba01af",
+    "challengeName": "Koogle",
     "teams": [
       {
         "id": 0,
-        "startDate": "2022-05-16T08:01",
-        "teamName": "Ida",
-        "solvedSudokus": 4
+        "startDate": "2022-05-12T01:27",
+        "teamName": "Delia",
+        "members": 5,
+        "solvedSudokus": 2,
+        "sudokus": 8
       },
       {
         "id": 1,
-        "startDate": "2022-05-13T08:22",
-        "teamName": "Helga",
-        "solvedSudokus": 1
+        "startDate": "2022-05-09T08:11",
+        "teamName": "Gillespie",
+        "members": 4,
+        "solvedSudokus": 6,
+        "sudokus": 8
       },
       {
         "id": 2,
-        "startDate": "2022-05-19T09:11",
-        "teamName": "Noble",
-        "solvedSudokus": 2
+        "startDate": "2022-05-13T12:10",
+        "teamName": "Bessie",
+        "members": 4,
+        "solvedSudokus": 0,
+        "sudokus": 8
       },
       {
         "id": 3,
-        "startDate": "2022-05-10T05:43",
-        "teamName": "Todd",
-        "solvedSudokus": 1
+        "startDate": "2022-05-30T02:19",
+        "teamName": "Isabelle",
+        "members": 5,
+        "solvedSudokus": 3,
+        "sudokus": 8
       },
       {
         "id": 4,
-        "startDate": "2022-05-21T01:06",
-        "teamName": "Allen",
-        "solvedSudokus": 2
+        "startDate": "2022-05-24T01:32",
+        "teamName": "Kris",
+        "members": 2,
+        "solvedSudokus": 0,
+        "sudokus": 8
       },
       {
         "id": 5,
-        "startDate": "2022-05-19T03:27",
-        "teamName": "Mariana",
-        "solvedSudokus": 2
+        "startDate": "2022-05-17T09:05",
+        "teamName": "Walters",
+        "members": 3,
+        "solvedSudokus": 5,
+        "sudokus": 8
       },
       {
         "id": 6,
-        "startDate": "2022-05-11T09:13",
-        "teamName": "Holloway",
-        "solvedSudokus": 8
+        "startDate": "2022-05-25T08:29",
+        "teamName": "Berry",
+        "members": 4,
+        "solvedSudokus": 5,
+        "sudokus": 8
       },
       {
         "id": 7,
-        "startDate": "2022-05-16T12:09",
-        "teamName": "Josefa",
-        "solvedSudokus": 2
+        "startDate": "2022-05-19T03:10",
+        "teamName": "Leigh",
+        "members": 3,
+        "solvedSudokus": 7,
+        "sudokus": 8
       },
       {
         "id": 8,
-        "startDate": "2022-05-13T08:13",
-        "teamName": "Baldwin",
-        "solvedSudokus": 2
+        "startDate": "2022-05-14T01:03",
+        "teamName": "Potts",
+        "members": 5,
+        "solvedSudokus": 1,
+        "sudokus": 8
       },
       {
         "id": 9,
-        "startDate": "2022-05-16T03:56",
-        "teamName": "Hollie",
-        "solvedSudokus": 7
+        "startDate": "2022-05-15T07:42",
+        "teamName": "Nikki",
+        "members": 5,
+        "solvedSudokus": 1,
+        "sudokus": 8
       }
     ]
-  };
+  }
 
 
   constructor(config: NgbAccordionConfig) { 

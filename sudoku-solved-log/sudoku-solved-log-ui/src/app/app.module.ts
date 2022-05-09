@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SudokuLogComponent } from './components/sudoku-log/sudoku-log.component';
 import { TeamComponent } from './components/team/team.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

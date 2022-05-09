@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-team',
@@ -7,7 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  teamName!: string;
+
+  @Input()
+  startDate!: string;
+
+  @Input()
+  sudokuSolved!: number;
+
+  @Input()
+  sudokus!: number;
+
+  @Input()
+  members!: number;
+
+  percent!: number;
+  
+
+  constructor() {
+    this.percent = (this.sudokuSolved / this.sudokus) * 100;
+   }
 
   ngOnInit(): void {
   }
