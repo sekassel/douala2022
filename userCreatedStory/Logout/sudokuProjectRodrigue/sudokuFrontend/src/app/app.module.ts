@@ -18,10 +18,12 @@ import { UserComponent } from './user/user.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
+import { HomeComponent } from './home/home.component';
 
 const appRoute: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user', component: UserComponent},
+  {path: 'home', component: HomeComponent},
   {path: '', component: LoginComponent},
 ];
 
@@ -34,7 +36,8 @@ const appRoute: Routes = [
     OptionsComponent,
     SuccessDialogComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
