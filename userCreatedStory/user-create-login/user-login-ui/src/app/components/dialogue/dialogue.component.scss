@@ -1,0 +1,21 @@
+@font-face {
+  font-family: Macondo;
+  src: url("./../../../assets/fonts/MacondoSwashCaps-Regular.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: Handlee;
+  src: url("./../../../assets/fonts/Handlee-Regular.ttf") format("truetype");
+}
+
+.titlemsg{
+  font-family: Handlee;
+  color: rgb(251, 5, 5);
+}
+.content
+{
+  display: flex;
+  justify-content: center;
+
+}

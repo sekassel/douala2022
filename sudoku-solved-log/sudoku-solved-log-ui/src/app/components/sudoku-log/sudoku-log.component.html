@@ -1,0 +1,27 @@
+<div class="log-container">
+    <h2>Challenge {{ challengeStarter.challengeName }}</h2>
+
+    <div class="hr-sep"></div>
+
+    <ngb-accordion class="teams" #acc="ngbAccordion" activeIds="config-panel-one">
+        <ngb-panel 
+            [title]="'Team '+ team.teamName" 
+            [id]="team.teamName"
+            *ngFor="let team of challengeStarter.teams; let i = index"
+        >
+            <ng-template ngbPanelContent>
+                <app-team
+                    [members]="team.members"
+                    [startDate]="team.startDate"
+                    [sudokus]="team.sudokus"
+                    [sudokuSolved]="team.solvedSudokus"
+
+                >
+                </app-team>      
+            </ng-template>
+          </ngb-panel>
+  
+    </ngb-accordion>
+
+
+</div>
