@@ -1,4 +1,5 @@
 import {UsersModel} from "./users.model";
+import {Sudokus} from "../../../../../challenge-ui/src/app/services/communication.service";
 
 export interface ChallengeCreateModelI {
   id: number;
@@ -7,6 +8,7 @@ export interface ChallengeCreateModelI {
   selected: boolean;
   avalable: boolean;
   users: UsersModel;
+  sudokus: Sudokus[];
 }
 
 export class ChallengeCreateModel implements ChallengeCreateModelI{
@@ -17,7 +19,8 @@ export class ChallengeCreateModel implements ChallengeCreateModelI{
     public challengeDateCreate: string | null,
     public selected: boolean,
     public avalable: boolean,
-    public users: UsersModel
+    public users: UsersModel,
+    public sudokus: Sudokus[]
   ){}
 
 }

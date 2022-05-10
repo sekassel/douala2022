@@ -1,1 +1,36 @@
-<h1>Monitot started</h1>
+<div class="container">
+    <p class="h1">Monitor started</p>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events[0] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{event.payload}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events[1] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{event.payload}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

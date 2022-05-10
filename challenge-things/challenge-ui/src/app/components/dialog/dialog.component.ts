@@ -74,6 +74,8 @@ export class DialogComponent implements OnInit {
   }
 
   onAcceptChallenge(challenge:ChallengeCreateModel): void {
+    challenge.avalable = false;
+    challenge.selected = true;
     this.ws.events.next({
       topic: "publish",
       targetTopic: "challenge-accepted",
@@ -90,6 +92,8 @@ export class DialogComponent implements OnInit {
   onDeclineChallenge(challenge:ChallengeCreateModel): void {
     const answer = confirm(`Do you really want to decline this challenge ?`);
     if(answer){
+      challenge.avalable = false;
+      challenge.selected = false;
       this.ws.events.next({
         topic: "publish",
         targetTopic: "challenge-declined",
