@@ -93,4 +93,9 @@ export class AppComponent implements OnInit {
     //   targetTopic: 'challenge-sudokus-list'
     // });
   }
+
+  jsontoString(object: any): string {
+    return JSON.stringify(object, null, 3);
+  }
+
 }

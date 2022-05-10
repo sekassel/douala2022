@@ -12,7 +12,7 @@
           <tr >
             <th scope="row">{{event.topic}}</th>
             <td>{{event.time}}</td>
-            <td>{{event.payload}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
           </tr>
         </tbody>
       </table>
@@ -29,7 +29,23 @@
           <tr >
             <th scope="row">{{event.topic}}</th>
             <td>{{event.time}}</td>
-            <td>{{event.payload}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events[2] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
           </tr>
         </tbody>
       </table>
