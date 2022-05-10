@@ -104,7 +104,7 @@ export class SudokuLogComponent implements OnInit {
   constructor(
     config: NgbAccordionConfig
     // private wsService: WebsocketService
-    ) { 
+  ) {
     config.closeOthers = true;
     config.type = 'info';
 
@@ -112,7 +112,7 @@ export class SudokuLogComponent implements OnInit {
     // this.wsService.events
     //   .subscribe(
     //   data => {
-        
+
     //     const jsonData = `${data}`;
     //     console.log('---------' +jsonData)
     //     if (jsonData.startsWith('{')) {
@@ -124,7 +124,7 @@ export class SudokuLogComponent implements OnInit {
     //         console.log(JSON.stringify(this.data_, null, 3));
     //       }
     //     };
-        
+
     //     console.log("Response from websocket: " + data);
     //   },
     //   err => console.log({error: 'Subscription error!!!!!'})
@@ -134,7 +134,7 @@ export class SudokuLogComponent implements OnInit {
     //   this.subsribeToChallengeAccepted();
     // },1000);
 
-    
+
   }
 
   ngOnInit(): void {
