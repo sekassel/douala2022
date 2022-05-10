@@ -147,7 +147,8 @@ export class SudokuLogComponent implements OnInit {
         challenge => {
           console.log(JSON.stringify(challenge, null, 3));
           this.data_ = challenge;
-        }
+        },
+        error => console.log({Error: error})
       );
 
 
