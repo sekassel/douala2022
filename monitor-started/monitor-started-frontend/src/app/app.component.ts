@@ -9,7 +9,7 @@ import { WebsocketService } from './services/websocket.service';
 })
 export class AppComponent implements OnInit {
   title = 'monitor-started-frontend';
-  
+
   events:any[] = []
   users:any[] = [];
 
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
   
   subscribeToEvents() {
 
-    this.http.get("http://localhost:3333/topicM").subscribe(
+    this.http.get("https://event-broker-douala2022.herokuapp.com/topicM").subscribe(
       (res:any)=>{
         
         this.events=res
