@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { TeamViewerComponent } from './components/team-viewer/team-viewer.compon
 import { SearchTeamComponent } from './components/search-team/search-team.component';
 import { TeamComponent } from './components/team/team.component';
 import { InviteComponent } from './components/invite/invite.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { InviteComponent } from './components/invite/invite.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     NgbModule
   ],

@@ -1,12 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
 
+// font import
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+
+
+$colorWhite: #fafbfb;
+$colorLiteGrey: #9199a5;
+$colorDarkGrey: #565d68;
+$colorBlack: #1e2026;
+$colorLite: #bbc3c9;
+$colorBlue: #0068ff;
+$colorBrown: #b17e4c;
+
+$colorBG: #f8f9fb;
+$colorRed: #ec407a;
+$colorGreen: #17c993;
+
+$colorDanger: #d32f2f;
+$colorWarning: #fb8c00;
+$colorGood: #4caf50;
+
+
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Open Sans";
+    // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -15,7 +37,7 @@ body {
 }
 
 main {
-    
+    background-color: $colorBG;
     display: block;
     text-align: center;
     min-height: 70vh;

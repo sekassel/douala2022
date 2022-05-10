@@ -2,6 +2,7 @@
 
 import { assert } from 'console'
 import {Websocket, WebsocketBuilder} from 'websocket-ts';
+const date = new Date();
 
 
 var ws : Websocket | null = null
@@ -9,6 +10,9 @@ var messageList : string[] = []
 
 describe('the event broker client', () => {
 
+    it('visits the event broker root', () => {
+        cy.visit('http://localhost:3333')
+    })
 
     it('opens a websocket', () => {
 
@@ -59,19 +63,53 @@ describe('the event broker client', () => {
     })
 
 
-    it('publish for user created', ()=>{
+
+    it('publish a user created event via websocket', ()=>{
+
         const msg = {
             topic: 'publish',
             targetTopic: 'user-created',
             payload: {
                 userName: 'Alice',
-                token: '12345621'
+                token: '12345621',
+                time: date.toISOString()
             }
         }
         ws?.send(JSON.stringify(msg, null, 3));
         cy.wait(1000);
 
         cy.log(`list of messages \n ` + JSON.stringify(messageList, null, 3))
+    })
+
+    it('publishes a user created event via http.post', () => {
+        const event = {
+            topic: 'publish',
+            targetTopic: 'user-created',
+            payload: {
+                userName: 'Bob',
+                token: '21345621'
+            }
+            }
+        const text = JSON.stringify(event, null, 3)
+        cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
+            // response.body is automatically serialized into JSON
+            expect(response.body).equal('Thank you') // true
+        })
+    })
+
+    it('publishes a team created event via http.post', () => {
+        const event = {
+            topic: 'publish',
+            targetTopic: 'team-created',
+                payload: {
+                    teamName: 'A-Team'
+                }
+            }
+        const text = JSON.stringify(event, null, 3)
+        cy.request('POST', 'http://localhost:3333/publish', event).then((response) => {
+            // response.body is automatically serialized into JSON
+            expect(response.body).equal('Thank you') // true
+        })
     })
 
 

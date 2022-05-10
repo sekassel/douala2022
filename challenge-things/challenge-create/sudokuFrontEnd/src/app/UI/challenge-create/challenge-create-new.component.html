@@ -1,0 +1,36 @@
+<form [formGroup]="createChallengeForm" (ngSubmit)="onCreateChallenge()" novalidate="novalidate" >
+  <div class="modal-content">
+    <div class="modal-header" style="padding: 10px 10px 10px 10px">
+      <h5 class="modal-title">Create new Challenge</h5>
+      <button type="button" class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="clear()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid ">
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="namOfChallenge" class="control-label">Name Of Challenge</label>
+              <input style="padding-left: 10px" type="text" class="form-control" name="namOfChallenge" id="namOfChallenge" size="100%" formControlName="challengeName" >
+            </div>
+          </div>
+
+<!--          <div class="col-md-6">-->
+<!--            <div class="form-group">-->
+<!--              <label for="sudoku" class="control-label">Sudoku Selected</label>-->
+<!--              <input style="padding-left: 10px" type="text" class="form-control" name="montant" id="sudoku" size="100%" formControlName="" >-->
+<!--            </div>-->
+<!--          </div>-->
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" (click)="clear()">Cancel</button>
+      <button type="submit" class="btn btn-sm btn-warning" >Create</button>
+    </div>
+  </div>
+</form>
