@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Difficulty} from '../models/difficulty'
 
@@ -7,7 +7,10 @@ import {Difficulty} from '../models/difficulty'
   templateUrl: './success-dialog.component.html',
   styleUrls: ['./success-dialog.component.scss']
 })
-export class SuccessDialogComponent {
+export class SuccessDialogComponent implements OnInit{
+    ngOnInit(): void {
+      localStorage.setItem("disable","false");
+    }
 
   constructor(
     public dialogRef: MatDialogRef<SuccessDialogComponent>,
