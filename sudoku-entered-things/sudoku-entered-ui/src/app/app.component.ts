@@ -11,6 +11,7 @@ import { WebsocketService } from './services/websocket.service';
 export class AppComponent {
   public publisher: Item = {
     topic: 'publish',
+    time: '',
     targetTopic: '',
     payload: []
   };
@@ -105,6 +106,8 @@ export class AppComponent {
     
   }
   publish(msg: string){
+    let time = new Date();
+    this.publisher.time = time.toString();
     this.publisher.targetTopic = msg;
     this.publisher.payload = this.sudokuGrid;
 
