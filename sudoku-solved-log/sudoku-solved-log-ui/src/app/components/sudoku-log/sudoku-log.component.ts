@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
+import { WebsocketService } from 'src/app/services/websocket.service';
+import { WebSocketServer, WebSocket } from 'ws';
 
 @Component({
   selector: 'app-sudoku-log',
@@ -96,14 +98,55 @@ export class SudokuLogComponent implements OnInit {
       }
     ]
   }
+  data_: any;
 
 
-  constructor(config: NgbAccordionConfig) { 
+  constructor(
+    config: NgbAccordionConfig
+    // private wsService: WebsocketService
+    ) { 
     config.closeOthers = true;
     config.type = 'info';
+
+
+    // this.wsService.events
+    //   .subscribe(
+    //   data => {
+        
+    //     const jsonData = `${data}`;
+    //     console.log('---------' +jsonData)
+    //     if (jsonData.startsWith('{')) {
+    //       const json = JSON.parse(jsonData);
+    //       const topic = json.targetTopic;
+
+    //       if (topic === "challenge-sudoku-accepted") {
+    //         this.data_ = json.payload;
+    //         console.log(JSON.stringify(this.data_, null, 3));
+    //       }
+    //     };
+        
+    //     console.log("Response from websocket: " + data);
+    //   },
+    //   err => console.log({error: 'Subscription error!!!!!'})
+    // );
+
+    // setTimeout(() => { // Important !
+    //   this.subsribeToChallengeAccepted();
+    // },1000);
+
+    
   }
 
   ngOnInit(): void {
+
+
+  }
+
+  subsribeToChallengeAccepted() {
+    // this.wsService.events.next({
+    //   topic: 'publish',
+    //   targetTopic: 'challenge-accepted'
+    // })
   }
 
 }
