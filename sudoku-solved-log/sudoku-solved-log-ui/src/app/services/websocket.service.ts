@@ -1,57 +1,3 @@
-// import { Injectable } from '@angular/core';
-// import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-// import { catchError, tap, switchAll } from 'rxjs/operators';
-// import { EMPTY, Observable, Subject } from 'rxjs';
-// import { environment } from 'src/environments/environment';
-
-// export const WS_ENDPOINT = environment.wsBrokerUrl;
-// // import { } from '';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class WebsocketService {
-//   public socket$ = webSocket(WS_ENDPOINT);
-//   private messagesSubject$ = new Subject<any>(); 
-//   public messages$ = this.messagesSubject$.pipe(switchAll(), catchError(e => { throw e }));
-
-//   constructor() { }
-
-//   public connect(): void {
-  
-//     if (!this.socket$ || this.socket$.closed) {
-//       this.socket$ = this.getNewWebSocket();
-//       const messages = this.socket$.pipe(
-//         tap({
-//           error: error => console.log(error),
-//         }), catchError(_ => EMPTY));
-//       this.messagesSubject$.next(messages);
-//     }
-//   }
-
-//   getNewWebSocket() {
-//     return webSocket({
-//       url: WS_ENDPOINT,
-//       closeObserver: {
-//         next: () => {
-//           console.log('[WebsocketService]: connection closed');
-//         }
-//       },
-//     });
-//   }
-  
-//   sendMessage(msg: any) {
-//     this.socket$.next(msg);
-//   }
-
-//   close() {
-//     this.socket$.complete(); 
-//   }
-
-
-// }
-
-
 import { Injectable } from "@angular/core";
 import { Observable, Observer } from 'rxjs';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
@@ -59,7 +5,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
 
-const CHAT_URL = environment.wsBrokerUrl;
+const BROKER_URL = environment.wsBrokerUrl;
 
 export interface Message {
     topic: string;
@@ -72,10 +18,10 @@ export interface Message {
 })
 export class WebsocketService {
     private subject!: AnonymousSubject<MessageEvent>;
-    public events!: Subject<object>;
+    public messages!: Subject<object>;
 
     constructor() {
-        this.events = <Subject<object>>this.connect(CHAT_URL).pipe(
+        this.messages = <Subject<object>>this.connect(BROKER_URL).pipe(
             map(
                 (response: MessageEvent): Message => {
                     console.log(response.data);

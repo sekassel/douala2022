@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { WebSocketServer, WebSocket } from 'ws';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sudoku-log',
@@ -102,16 +104,18 @@ export class SudokuLogComponent implements OnInit {
 
 
   constructor(
-    config: NgbAccordionConfig
-    // private wsService: WebsocketService
+    config: NgbAccordionConfig,
+    private wsService: WebsocketService,
+    private http: HttpClient
   ) {
     config.closeOthers = true;
     config.type = 'info';
 
 
-    // this.wsService.events
+    // this.wsService.messages
     //   .subscribe(
     //   data => {
+    //     this.subsribeToChallengeAccepted();
 
     //     const jsonData = `${data}`;
     //     console.log('---------' +jsonData)
@@ -119,7 +123,7 @@ export class SudokuLogComponent implements OnInit {
     //       const json = JSON.parse(jsonData);
     //       const topic = json.targetTopic;
 
-    //       if (topic === "challenge-sudoku-accepted") {
+    //       if (topic) {
     //         this.data_ = json.payload;
     //         console.log(JSON.stringify(this.data_, null, 3));
     //       }
@@ -137,16 +141,23 @@ export class SudokuLogComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.http.get(environment.brokerUrl + '/topic?id=challenge-accepted')
+      .subscribe(
+        challenge => {
+          console.log(JSON.stringify(challenge, null, 3));
+          this.data_ = challenge;
+        }
+      );
 
 
   }
 
   subsribeToChallengeAccepted() {
-    // this.wsService.events.next({
-    //   topic: 'publish',
-    //   targetTopic: 'challenge-accepted'
-    // })
+    this.wsService.messages.next({
+      topic: 'subscribe',
+      targetTopic: 'challenge-accepted'
+    })
   }
 
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  wsBrokerUrl: 'ws://event-broker-douala2022.herokuapp.com/'
+  wsBrokerUrl: 'ws://event-broker-douala2022.herokuapp.com/',
+  brokerUrl: 'https://event-broker-douala2022.herokuapp.com'
 };
 
 /*
