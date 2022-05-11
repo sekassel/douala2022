@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from './services/websocket.service';
 
 @Component({
@@ -7,11 +7,10 @@ import { WebsocketService } from './services/websocket.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'monitor-started-frontend';
-  eventsList = ['publish', 'subscribe', 'users created'];
 
-  events:any;
+  events:any[] = []
   users:any[] = [];
 
   constructor(private ws: WebsocketService,private http: HttpClient) {
@@ -41,20 +40,27 @@ export class AppComponent {
       console.log("Response from websocket: " + msg);
     });
 
-    setTimeout(() => { // Important !
+ /*    setTimeout(() => { // Important !
       this.subscribeToEvents();
-    },1000);
+    },1000); */
   
+   
+    toString()
 
     // ws.connect('http://localhost:3333/');
+  }
+  ngOnInit(): void {
+    this.subscribeToEvents();
+    
   }
   
   subscribeToEvents() {
 
-    this.http.get("http://localhost:3333/topicM").subscribe(
-      (res)=>{
-        console.log(res)
+    this.http.get("https://event-broker-douala2022.herokuapp.com/topicM").subscribe(
+      (res:any)=>{
+        
         this.events=res
+        console.log("response",this.events)
 
       },
       (error)=>{
@@ -62,6 +68,8 @@ export class AppComponent {
       }
       
     )
+    console.log("hon init",this.events)
+
     /**
      * We need to subscribe to those events:
      * 'challenges-list'
@@ -85,4 +93,9 @@ export class AppComponent {
     //   targetTopic: 'challenge-sudokus-list'
     // });
   }
+
+  jsontoString(object: any): string {
+    return JSON.stringify(object, null, 3);
+  }
+
 }

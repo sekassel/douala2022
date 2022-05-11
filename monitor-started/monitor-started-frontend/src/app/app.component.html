@@ -1,39 +1,52 @@
-<h1>Monitot started</h1>
-<P>{{ title }}</P>
 <div class="container">
+    <p class="h1">Monitor started</p>
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+        <tbody *ngFor="let event of events[0] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
           </tr>
         </tbody>
       </table>
-</div>
 
-<div class="container" *ngFor="let event of eventsList ">
-    <div class="btn-group-vertical">
-        <span class="btn btn-secondary"> {{ event }}</span>
-    </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events[1] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Time</th>
+            <th scope="col">Payload</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let event of events[2] ">
+          <tr >
+            <th scope="row">{{event.topic}}</th>
+            <td>{{event.time}}</td>
+            <td>{{jsontoString(event.payload)}}</td>
+          </tr>
+        </tbody>
+      </table>
 </div>

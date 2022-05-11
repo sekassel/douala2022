@@ -21,7 +21,9 @@ describe("the event broker" , () => {
             targetTopic: 'user-created',
             payload: {
                 userName: 'Bob',
-                token: '21345621'
+                token: '21345621',
+                secret: '****',
+                email: 'a@b.c'
             }
         }
         const text = JSON.stringify(event, null, 3)

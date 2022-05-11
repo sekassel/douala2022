@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  wsBrokerUrl: 'ws://event-broker-douala2022.herokuapp.com/',
+  brokerUrl: 'https://event-broker-douala2022.herokuapp.com'
 };
 
 /*
