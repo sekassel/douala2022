@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   events:any[] = []
   users:any[] = [];
+  topicList = [''];
 
   constructor(private ws: WebsocketService,private http: HttpClient) {
     this.ws.events.subscribe(msg => {
@@ -37,7 +38,9 @@ export class AppComponent implements OnInit {
         //     break;
         // }
       }
-      console.log("Response from websocket: " + msg);
+      console.log("Response from websocket: " + msg);  
+      this.topicList = this.getUnique(this.events);
+      console.log(this.topicList);
     });
 
  /*    setTimeout(() => { // Important !
@@ -51,11 +54,11 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.subscribeToEvents();
-    
   }
   
   subscribeToEvents() {
 
+    // this.http.get("http://localhost:3333/topicM").subscribe(
     this.http.get("https://event-broker-douala2022.herokuapp.com/topicM").subscribe(
       (res:any)=>{
         
@@ -94,8 +97,25 @@ export class AppComponent implements OnInit {
     // });
   }
 
-  jsontoString(object: any): string {
+  toJson(object: any): string {
     return JSON.stringify(object, null, 3);
+  }
+
+  getUnique(events: any) {
+    const topicNames = [];
+    const topicNamesFilter = [];
+    for(const event of events){
+      for(const id of event){
+        topicNames.push(id.topic);
+      }
+    }
+
+    for(let i=0; i < topicNames.length; i++){
+      if(topicNamesFilter.indexOf(topicNames[i]) === -1) {
+        topicNamesFilter.push(topicNames[i]);
+      }
+    }
+    return topicNamesFilter;
   }
 
 }
