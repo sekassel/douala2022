@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"json-server --watch ./server/db.json\"",
-    "build": "ng build",
+    "start": "http-server -p $PORT -c-1 ./dist/sudoku-front-end",
+    "build": "ng build sudokuFrontEnd --base-href ./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "server": "ts-node ./server/server.ts"
+    "server": "ts-node ./server/server.ts",
+    "build:prod": "npm run build -- -c production"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.0.0",
     "concurrently": "^7.1.0",
+    "http-server": "^14.1.0",
     "jquery": "^3.4.1",
     "ngx-toastr": "^13.2.0",
     "popper.js": "^1.16.1",
@@ -38,7 +40,7 @@
     "@angular/compiler-cli": "~13.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/jquery": "^3.3.30",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.50",
     "jasmine-core": "~4.0.0",
     "json-server": "^0.17.0",
     "karma": "~6.3.0",

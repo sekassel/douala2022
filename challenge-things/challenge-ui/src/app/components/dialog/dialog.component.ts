@@ -61,7 +61,20 @@ export class DialogComponent implements OnInit {
 
       setTimeout(() => { // Important !
         this.subscribeToEvents();
+        // this.started();
       },1000);
+
+      setInterval(() => {
+
+        this.ws.events.next(
+          {
+            topic: "publish",
+            targetTopic: "challenges-listed",
+            payload: this.challenges
+          }
+        );
+  
+      }, 2000);
 
      }
 
@@ -106,6 +119,17 @@ export class DialogComponent implements OnInit {
     // Need a query param for that.
   }
 
+
+  // started(){
+  //   const date = new Date();
+  //   const current_date = date.getTime();
+  //   for(let challenge of this.challenges){
+  //     if(challenge.date == current_date){
+  //       challenge.started = true;
+  //     }
+  //   }
+  // }
+
   subscribeToEvents() {
     /**
      * We need to subscribe to those events:
@@ -128,6 +152,26 @@ export class DialogComponent implements OnInit {
     this.ws.events.next({
       topic: 'subscribe',
       targetTopic: 'challenge-sudokus-list'
+    });
+  }
+
+  publishToEvents() {
+    /**
+     * We need to publish to those events:
+     * 'challenges-list'
+     * 'challenge-created' ?
+     * 'challenge-accepted' ?
+     * 'challenge-declined' ?
+     * 'challenge-sudokus-list'
+     */
+    this.ws.events.next({
+      topic: 'publish',
+      targetTopic: 'challenge-declined'
+    });
+
+    this.ws.events.next({
+      topic: 'publish',
+      targetTopic: 'challenge-accepted'
     });
   }
 }

@@ -26,6 +26,50 @@ export class ChallengeCreateNewComponent implements OnInit {
     "password": "123"
   };
 
+  sudokus = [
+    
+    {
+      "id": 1,
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
+    },
+    {
+      "id": 2,
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
+    },
+    {
+      "id": 3,
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
+    },
+    {
+      "id": 4,
+      "name": "duncan",
+      "niveau": "medium",
+      "modifie": false,
+      "value": [],
+      "solution": 0,
+      "isPressed": true,
+      "player": ""
+    }
+  ]
+
   // @ts-ignore
   challengeCreate = new ChallengeCreateModel();
 
@@ -56,9 +100,11 @@ export class ChallengeCreateNewComponent implements OnInit {
 
     this.challengeCreate.challengeName = this.createChallengeForm.value.challengeName;
     this.challengeCreate.challengeDateCreate = this.datePipe.transform(Date.now(), 'dd/MM/yyyy');
-    this.challengeCreate.selected = true;
+    this.challengeCreate.selected = false;
     this.challengeCreate.avalable = true;
+    this.challengeCreate.started = true;
     this.challengeCreate.users = this.users1;
+    this.challengeCreate.sudokus = this.sudokus;
 
     this.challengeCreateService.createChallenges(this.challengeCreate).subscribe(
       (res: any) => {

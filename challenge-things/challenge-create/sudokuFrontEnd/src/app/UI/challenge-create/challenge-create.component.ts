@@ -28,34 +28,33 @@ export class ChallengeCreateComponent implements OnInit {
     private toastr: ToastrService,
   ) {
 
-    setTimeout(() => { // Important !
-      this.ws.events.subscribe(msg => {
-        const str = `${msg}`;
+    this.ws.events.subscribe(msg => {
+      const str = `${msg}`;
 
-        if(str.startsWith('{')) {
-          const json = JSON.parse(str);
-          const topic = json.topic;
+      if(str.startsWith('{')) {
+        const json = JSON.parse(str);
+        const topic = json.topic;
 
-          switch(topic) {
-            case "challenges-listed":
-              // Use of array.filter to get only these team's challenges ?
-              this.challengeCreateModel = json.payload;
-              break;
-            case "challenge-created":
-              this.challengeCreateModel.push(json.payload);
-              break;
-            case "challenge-sudokus-listed":
-              break;
-            case "challenge-declined":
-              this.challengeCreateModelDeclined.push(json.payload);
-              this.onUpdateChallenge();
-              break;
-          }
+        switch(topic) {
+          case "challenge-accepted":
+            console.log(json.payload)
+            this.challengeCreateModelDeclined.push(json.payload);
+            console.log(this.challengeCreateModelDeclined)
+            this.onUpdateChallenge();
+            break;
+          case "challenge-declined":
+            console.log(json.payload)
+            this.challengeCreateModelDeclined.push(json.payload);
+            console.log(this.challengeCreateModelDeclined)
+            this.onUpdateChallenge();
+            break;
         }
-        console.log("Response from websocket: " + msg);
-      });
+      }
+      console.log("Response from websocket: " + msg);
+    });
 
-
+    setTimeout(() => { // Important !
+      this.subscribeToEvents();
     },1000);
 
     setInterval(() => {
@@ -68,7 +67,7 @@ export class ChallengeCreateComponent implements OnInit {
         }
       );
 
-    }, 1000);
+    }, 2000);
 
   }
 
@@ -111,13 +110,13 @@ export class ChallengeCreateComponent implements OnInit {
       this.challengeCreateService.updateChallenge(this.challengeCreateModelDeclined[i]).subscribe(
         (res: any) => {
           this.eventManager.broadcast({ name: 'challengeListModification', content: 'challenge update' });
-          alert("Success Update");
         }, (error) => {
           this.toastr.error(error);
         }
       )
 
     }
+    alert("Success Update");
 
   }
 
@@ -147,6 +146,26 @@ export class ChallengeCreateComponent implements OnInit {
     this.ws.events.next({
       topic: 'publish',
       targetTopic: 'challenge-sudokus-list'
+    });
+  }
+
+  subscribeToEvents() {
+    /**
+     * We need to subscribe to those events:
+     * 'challenges-list'
+     * 'challenge-created' ?
+     * 'challenge-accepted' ?
+     * 'challenge-declined' ?
+     * 'challenge-sudokus-list'
+     */
+    this.ws.events.next({
+      topic: 'subscribe',
+      targetTopic: 'challenge-accepted'
+    });
+
+    this.ws.events.next({
+      topic: 'subscribe',
+      targetTopic: 'challenge-declined'
     });
   }
 
