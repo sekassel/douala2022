@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start:sudoku": "ng serve",
     "start": "http-server -p $PORT -c-1 ./dist/sudoku-entered-ui",
     "start:dev": "ng serve -o",
     "build": "ng build",

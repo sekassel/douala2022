@@ -16,10 +16,10 @@
               </div>
               {{request}}
               <div class="actions">
-                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                <a id='handle-invitations' class="btn" (click) ="AddMember()">
                   <i class="bi bi-person-check-fill"></i>
                 </a>
-                <a id='handle-invitations' class="btn" routerLink="/manageTeams">
+                <a id='handle-invitations' class="btn" (click) = "DelMember()">
                   <i class="bi bi-person-x-fill"></i>
                 </a>
               </div>

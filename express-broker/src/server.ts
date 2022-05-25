@@ -26,26 +26,66 @@ const eventMap: Map<string, any[]> = new Map();
 
 // let us have an post endpoint for publishing new events
 app.post('/publish', (req, res) => {
-    const jsonMsg = req.body;
-    console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
-    handlePublish(jsonMsg)
-    res.send({
-        msg: 'Thank you'
-    })
+    try {
+        const jsonMsg = req.body;
+        console.log('post publish got body ' + JSON.stringify(jsonMsg, null, 3))
+        handlePublish(jsonMsg)
+        res.send({
+            msg: 'Thank you'
+        })
+    } catch (error) {
+        res.send({
+            err: error
+        })
+    }
 })
 
+app.post('/remove', (req, res) => {
+    try {
+        const jsonMsg = req.body;
+        console.log('post remove got body ' + JSON.stringify(jsonMsg, null, 3))
+        handleRemove(jsonMsg)
+        res.send({
+            msg: 'Okay'
+        })
+    } catch (error) {
+        res.send({
+            err: error
+        })
+    }
+})
 
 app.get('/topic', (req, res) => {
-    let id = `${req.query.id}`
-
-    let eventList = eventMap.get(id)
-    console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
-    if ( ! eventList) {
-        eventList = []
+    try {
+        
+        let id = `${req.query.id}`
+        
+        let eventList = eventMap.get(id)
+        // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
+        if ( ! eventList) {
+            eventList = []
+        }
+        res.send(JSON.stringify(eventList, null, 3))
+    } catch (error) {
+        res.send({err: error})
     }
-    res.send(JSON.stringify(eventList, null, 3))
 })
 
+
+app.get('/topicM', (req, res) => {
+    try {
+        let eventList:any[]=[]
+        let id = `${req.query.id}`
+        for(let [key,value] of eventMap ){
+            eventList.push(value)
+        }
+            
+        console.log(eventList)
+        res.send(JSON.stringify(eventList, null, 3))
+    } catch (error) {
+        res.send({err: error})
+    }
+})
 
 
 app.get('/', (req, res) => {
@@ -59,21 +99,25 @@ wss.on('connection', (ws: WebSocket) => {
 
     //connection is up, let's add a simple simple event
     ws.on('message', (message: string) => {
+        try {
+            //log the received message and send it back to the client
+            // console.log('received: %s', message);
 
-        //log the received message and send it back to the client
-        // console.log('received: %s', message);
+            const msg : string = `${message}`
 
-        const msg : string = `${message}`
+            if (msg.startsWith('{')) {
+                const jsonMsg = JSON.parse(msg);
+                handleSubscribe(ws, jsonMsg)
+                handlePublish(jsonMsg)
+                handleRemove(jsonMsg)
+                handleMonitor(ws, jsonMsg)
+                return
+            }
 
-        if (msg.startsWith('{')) {
-            const jsonMsg = JSON.parse(msg);
-            handleSubscribe(ws, jsonMsg)
-            handlePublish(jsonMsg)
-            return
+            ws.send(`Hello, you sent -> ${message}`);
+        } catch (error) {
+            ws.send("ws ups " + error)
         }
-
-
-        ws.send(`Hello, you sent -> ${message}`);
     });
 
     //send immediatly a feedback to the incoming connection
@@ -88,6 +132,7 @@ server.listen(process.env.PORT || 3333, () => {
 
 
 function handleSubscribe(ws: WebSocket, jsonMsg: any) {
+
     if (jsonMsg.topic == 'subscribe') {
         // console.log('it is a subscribe for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
@@ -108,14 +153,33 @@ function handleSubscribe(ws: WebSocket, jsonMsg: any) {
     }
 }
 
+function handleMonitor(ws: WebSocket, jsonMsg:any) {
+    if(jsonMsg.topic == 'monitor') {
+        const object = {};
+
+        eventMap.forEach((value, key) => {
+            const keys = key.split('.'),
+                last:any = keys.pop();
+            keys.reduce((r:any, a:any) => r[a] = r[a] || {}, object)[last] = value;
+        });
+
+        ws.send(JSON.stringify(object), ()=>{})
+    }
+}
+
 function handlePublish(jsonMsg: any) {
     if (jsonMsg.topic == 'publish') {
         // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
         const tgtTopic = jsonMsg.targetTopic;
 
+        if ( ! jsonMsg.time) {
+            jsonMsg.time = new Date().toISOString()
+        }
+
         // store in eventMap
         const answer = {
             topic: tgtTopic,
+            time: jsonMsg.time,
             payload: jsonMsg.payload
         }
         var eventList = eventMap.get(answer.topic);
@@ -123,12 +187,13 @@ function handlePublish(jsonMsg: any) {
             eventList = []
             eventMap.set(answer.topic, eventList)
         }
-        if ( newevent(answer, eventList)){
+        if ( newEvent(answer, eventList)){
             eventList.push(answer)
         }
-        
+
 
         console.log(`eventlist for ${jsonMsg.targetTopic} is ${JSON.stringify(eventList, null, 3)}`)
+        console.log(`    ...  the size is : ${eventList.length}`)
 
 
         // find interested sockets
@@ -154,25 +219,79 @@ function handlePublish(jsonMsg: any) {
             console.log('have send answer to some service');
         }
 
+        // Send to the monitor
+        // const monitorSocket = topicMap.get('any');
+        // if(monitorSocket) {
+        //     monitorSocket[0].send(text, (err) => {
+        //         if (err) {
+        //             const errString = JSON.stringify(err)
+        //             if (errString != '{}') {
+        //                 console.log(`send error ` + JSON.stringify(err))
+        //             }
+        //         }
+        //     });
+        // }
+
         return
     }
 }
 
- function newevent(event:any, list:any[]){
-     for (const oldEvent of list) {
-         const newPayload = event.payload
-         const oldPayload = oldEvent.payload
-         let valuesAreEqual = true
-        for (const field of newPayload) {
-            if(newPayload[field] != oldPayload[field]){
-                valuesAreEqual = false
-                break
-            }
-            
+function handleRemove(jsonMsg: any) {
+    if (jsonMsg.topic == 'remove') {
+        // console.log('it is a publish for topic  ' + jsonMsg.targetTopic);
+        const tgtTopic = jsonMsg.targetTopic;
+
+        // remove from eventMap
+        var eventList = eventMap.get(tgtTopic);
+        if ( ! eventList) {
+            return
         }
-      if(valuesAreEqual)
-        return false
-        
+
+        var i = 0
+        for (const e of eventList) {
+            if (e.time === jsonMsg.time) {
+                eventList.splice(i, 1)
+                console.log('list after removal ' + JSON.stringify(eventList))
+            }
+            i++;
+        }
+
+        // find interested sockets
+        const socketList = topicMap.get(jsonMsg.targetTopic)
+        if (socketList == null) {
+            // console.log("socket list for this topic is empty")
+            return
+        }
+
+        // inform subscribers
+        const text = JSON.stringify(jsonMsg, null, 3)
+
+        // send to subscribers
+        for (const s of socketList) {
+            s.send(text, (err) => {
+                if (err) {
+                    const errString = JSON.stringify(err)
+                    if (errString != '{}') {
+                        console.log(`send error ` + JSON.stringify(err))
+                    }
+                }
+            })
+            console.log('have send answer to some service');
+        }
+
+        return
+    }
+}
+
+
+function newEvent(event:any, list:any[]){
+     const newEventText = JSON.stringify(event)
+     for (const oldEvent of list) {
+         const oldEventText = JSON.stringify(oldEvent)
+         if (newEventText === oldEventText) {
+             console.log('this event is already known')
+             return false
+         }
      }
      return true
  }
