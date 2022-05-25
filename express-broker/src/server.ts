@@ -57,9 +57,9 @@ app.post('/remove', (req, res) => {
 
 app.get('/topic', (req, res) => {
     try {
-        
+
         let id = `${req.query.id}`
-        
+
         let eventList = eventMap.get(id)
         // console.log(`eventlist for ${id} is ${JSON.stringify(eventList)}`)
         if ( ! eventList) {
@@ -79,7 +79,7 @@ app.get('/topicM', (req, res) => {
         for(let [key,value] of eventMap ){
             eventList.push(value)
         }
-            
+
         console.log(eventList)
         res.send(JSON.stringify(eventList, null, 3))
     } catch (error) {
@@ -89,8 +89,13 @@ app.get('/topicM', (req, res) => {
 
 
 app.get('/', (req, res) => {
+    let eventList:any[]=[]
+    for(let [key,value] of eventMap ){
+        eventList.push(value)
+    }
     res.send({
-        msg: 'Welcome to the Douala2022 Event Broker.'
+        msg: 'Welcome to the Douala2022 Event Broker.',
+        eventMap: eventList
     })
 })
 
