@@ -19,6 +19,7 @@ export class ChallengeCreateModel implements ChallengeCreateModelI{
     public challengeName: string,
     public challengeDateCreate: string,
     public selected: boolean,
+    public started: boolean,
     public avalable: boolean,
     public users: UsersModel,
     public sudokus: Sudokus[]

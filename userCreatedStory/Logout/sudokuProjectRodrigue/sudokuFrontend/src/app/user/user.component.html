@@ -1,7 +1,7 @@
 <app-board [board]="board" [class.locked]="boardLocked" (gameSolved)="onGameSolved()"></app-board>
 <div class="horizontal-flex">
   <button mat-flat-button (click)="newGame()" style="margin: 1%" color="primary">New Game</button>
-  <button mat-flat-button (click)="solve()" style="margin: 1%" color="accent">Solve</button>
+  <button mat-flat-button (click)="solve()" style="margin: 1%" color="accent" [disabled]="disable()">Solve</button>
   <button mat-flat-button (click)="logout()" style="margin: 1%" color="warn">Logout</button>
   <button mat-icon-button (click)="openOptions()">
     <mat-icon>settings</mat-icon>

@@ -24,11 +24,13 @@ export class UserComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
+    localStorage.setItem("disable","true");
     this.newGame()
   }
 
 
   newGame(): void {
+    this.disable();
     this.board = this.sudokuService.createBoard(this.difficulty)
     this.boardLocked = false;
   }
@@ -70,5 +72,9 @@ export class UserComponent implements OnInit {
     localStorage.clear();
     window.sessionStorage.clear();
     this.router.navigateByUrl("/login");
+  }
+
+  disable() {
+    return localStorage.getItem("disable");
   }
 }

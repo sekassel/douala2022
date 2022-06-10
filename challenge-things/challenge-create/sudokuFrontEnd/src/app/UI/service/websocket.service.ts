@@ -4,7 +4,8 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const CHAT_URL = "ws://localhost:3333";
+// const CHAT_URL = "ws://localhost:3333";
+const CHAT_URL = "wss://event-broker-douala2022.herokuapp.com/"
 
 export interface Message {
     topic: string;
