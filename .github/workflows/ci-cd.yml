@@ -20,6 +20,7 @@ jobs:
           registry: ${{ secrets.DOCKER_REGISTRY }}
           image_name: douala/express-broker
           image_tag: latest
+          context: express-broker/
       - name: Rancher Deploy
         uses: sekassel-research/actions-rancher-update@2.0.2
         with:
