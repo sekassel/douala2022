@@ -6,17 +6,17 @@ import { Injectable } from '@angular/core';
 })
 export class AuthentificationService {
   adduser(params:any) {
-    return this.http.post('https://event-broker-douala2022.herokuapp.com/publish', params)
+    return this.http.post('https://douala.uniks.de/publish', params)
   }
 
   constructor(private http: HttpClient) { }
 
   getUsers(){
-    return this.http.get<any[]>('https://event-broker-douala2022.herokuapp.com/topic?id=user-created')
+    return this.http.get<any[]>('https://douala.uniks.de/topic?id=user-created')
   }
 
   resetPassword(params:any,marams:any){
-     const resp=this.http.post('https://event-broker-douala2022.herokuapp.com/remove',marams
+     const resp=this.http.post('https://douala.uniks.de/remove',marams
       ).subscribe(
         response=>{
           console.log(response)
