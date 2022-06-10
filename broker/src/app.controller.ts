@@ -12,7 +12,6 @@ export class AppController {
 
   this.eventGateWay.server.emit('events',"ici")
 
-
     return this.appService.getHello();
   }
 }
