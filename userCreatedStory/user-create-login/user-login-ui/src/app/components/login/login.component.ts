@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './../../authentification.service';
 import { DialogueComponent } from '../dialogue/dialogue.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
 
 
   async connexion(){
-    this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
+    this.dialog.open(DialogueComponent,{data:{img: environment.assetsPath + "loader.gif"}, disableClose: true });
     this.auth.getUsers().subscribe(
       res=>{
 
@@ -69,7 +70,7 @@ export class LoginComponent implements OnInit {
             console.log('Starting, will sleep for 5 secs now');
             await delay(1000);
             this.dialog.closeAll()
-            this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
+            this.dialog.open(DialogueComponent,{data: {img: environment.assetsPath + "checked.png"}, disableClose: true });
 
             // this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
             await delay(500);
@@ -82,7 +83,7 @@ export class LoginComponent implements OnInit {
           ( async() => {
             await delay(1000);
             this.dialog.closeAll()
-            this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"Password or UserName Incorect"}});
+            this.dialog.open(DialogueComponent,{data:{img: environment.assetsPath + "fail.png",msg:"Password or UserName Incorect"}});
         })();
         }
     }
