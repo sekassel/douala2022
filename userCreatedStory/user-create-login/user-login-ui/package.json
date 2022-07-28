@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "node server.js",
     "serve": "ng serve -o --watch",
-    "build": "ng build --prod",
+    "build": "ng build --base-href=/douala2022/user-login-ui/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
