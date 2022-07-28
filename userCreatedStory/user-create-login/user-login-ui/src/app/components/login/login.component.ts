@@ -4,7 +4,6 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './../../authentification.service';
-import { v4 as uuidv4 } from 'uuid';
 import { DialogueComponent } from '../dialogue/dialogue.component';
 @Component({
   selector: 'app-login',
@@ -68,13 +67,14 @@ export class LoginComponent implements OnInit {
 
         ( async() => {
             console.log('Starting, will sleep for 5 secs now');
-            await delay(2000);
+            await delay(1000);
             this.dialog.closeAll()
             this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
 
             // this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
-            await delay(1000);
-            window.location.href = "https://google.com";//waiting for the landing page
+            await delay(500);
+            window.location.href = "https://sudoku-rodriguembiaha.herokuapp.com/";
+            //waiting for the landing page
             this.dialog.closeAll()
         })();
 
