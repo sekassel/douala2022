@@ -40,7 +40,7 @@ export class AddUserComponent implements OnInit {
 
   createUser(){
     this.valid=true
-    this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
+    this.dialog.open(DialogueComponent,{data:{img:"assets/loader.gif"}, disableClose: true });
     const params={
       topic: 'publish',
       targetTopic: 'user-created',
@@ -66,7 +66,7 @@ export class AddUserComponent implements OnInit {
                     ( async() => {
                       await this.delay(2000);
                       this.dialog.closeAll()
-                      this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/checked.png"}, disableClose: true });
+                      this.dialog.open(DialogueComponent,{data:{img:"assets/checked.png"}, disableClose: true });
                       await this.delay(2000);
                       this.dialog.closeAll()
                       this.router.navigate([''])
@@ -78,7 +78,7 @@ export class AddUserComponent implements OnInit {
             ( async() => {
               await this.delay(2000);
               this.dialog.closeAll()
-              this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/fail.png",msg:"This user name is already taken"}});
+              this.dialog.open(DialogueComponent,{data:{img:"assets/fail.png",msg:"This user name is already taken"}});
           })();
         }
 
