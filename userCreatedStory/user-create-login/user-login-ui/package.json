@@ -6,6 +6,7 @@
     "start": "node server.js",
     "serve": "ng serve -o --watch",
     "build": "ng build --base-href=/douala2022/user-login-ui/",
+    "deploy": "rm -r ../../../docs/user-login-ui/ && cp -r ./dist/user-login-ui/ ../../../docs/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
