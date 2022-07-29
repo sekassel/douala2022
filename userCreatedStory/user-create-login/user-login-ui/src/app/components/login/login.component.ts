@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
 
             // this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/grille.svg"}, disableClose: true });
             await delay(500);
-            window.location.href = "https://sudoku-rodriguembiaha.herokuapp.com/";
+            window.location.href = "https://sekassel.github.io/douala2022/sudokuGame";
             //waiting for the landing page
             this.dialog.closeAll()
         })();
