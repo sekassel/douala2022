@@ -24,7 +24,7 @@ const appRoute: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user', component: UserComponent},
   {path: 'home', component: HomeComponent},
-  {path: '', component: LoginComponent},
+  {path: '', component: HomeComponent},
 ];
 
 

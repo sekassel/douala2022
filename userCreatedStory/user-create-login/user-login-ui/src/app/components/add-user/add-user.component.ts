@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthentificationService } from './../../authentification.service';
 import { v4 as uuidv4 } from 'uuid';
 import { DialogueComponent } from '../dialogue/dialogue.component';
+import { environment } from 'src/environments/environment'
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -40,7 +41,7 @@ export class AddUserComponent implements OnInit {
 
   createUser(){
     this.valid=true
-    this.dialog.open(DialogueComponent,{data:{img:"./../../../assets/loader.gif"}, disableClose: true });
+    this.dialog.open(DialogueComponent,{data:{img: environment.assetsPath + "loader.gif"}, disableClose: true });
     const params={
       topic: 'publish',
       targetTopic: 'user-created',
