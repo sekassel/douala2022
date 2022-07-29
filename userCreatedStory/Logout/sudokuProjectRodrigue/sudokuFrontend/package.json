@@ -5,7 +5,9 @@
     "ng": "ng",
     "start:sudoku": "ng serve",
     "start": "http-server -p 9000 -c-1 ./dist/sudokuGame",
+    "copy": "cp -r dist/sudokuGame ../../../../docs",
     "build": "ng build --base-href=/douala2022/sudokuGame/",
+    "deploy": "rm -r ../../../../docs/sudokuGame; cp -r dist/sudokuGame ../../../../docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
